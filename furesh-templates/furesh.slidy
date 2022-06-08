@@ -23,8 +23,7 @@ $endif$
   <style type="text/css">
     $styles.html()$
   </style>
-  <link rel="stylesheet" type="text/css" media="screen, projection, print"
-    href="$slidy-url$/styles/slidy.css" />
+  <!-- <link rel="stylesheet" type="text/css" media="screen, projection, print" href="$slidy-url$/styles/slidy.css" /> -->
 $for(css)$
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
    href="$css$" />
@@ -45,6 +44,9 @@ $endif$
 $for(include-before)$
 $include-before$
 $endfor$
+<header>
+  <img scr="../../../assets/logo_hu.png">
+</header>
 $if(title)$
 <div class="slide titlepage">
   <h1 class="title">$title$</h1>
@@ -75,5 +77,8 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
+<footer>
+  <span id="institution">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
+  </footer>
 </body>
 </html>
