@@ -75,8 +75,5 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
-<footer>
-  <span>test footer</span>
-</footer>
 </body>
 </html>
