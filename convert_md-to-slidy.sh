@@ -8,6 +8,7 @@ input_dir="$current_dir/_input"
 output_dir="$current_dir/_output"
 #  path to csl
 csl_dir="$current_dir/furesh-templates/csl"
+css_dir="$current_dir/furesh-templates/css"
 csl="$csl_dir/chicago-author-date_slides.csl"
 # path to template directory
 templates_dir="$current_dir/furesh-templates"
@@ -21,5 +22,5 @@ cd $input_dir && pwd
 # note that --template is called --reference-doc for pptx
 for file in *.md;  
 	do name=${file%.*}
-	    pandoc -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --template $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+	    pandoc -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;  
 done
