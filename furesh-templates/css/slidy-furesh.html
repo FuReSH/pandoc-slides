@@ -35,8 +35,7 @@
 /*    font-size: 14px;*/
 }
 
-html,
-div.slide {
+html {
     height: 100%;
 }
 body {
@@ -54,21 +53,47 @@ body {
   /* line-height: 1.2; */
   word-wrap: break-word;
 }
-header, footer {
-    z-index: 30;
-    display: block;
-    position: absolute;
-    width: 100%;
+/******************
+  header and footer to be displayed on all slides
+*******************/
+
+header, 
+footer, 
+div.c_header,
+div.c_footer  {
+  z-index: 30;
+  display: block;
+  position: fixed;
+  height: 10%;
+  width: 100%;
 }
-header {
-  top: 0;
-  height: 100px;
+header,
+div.c_header {
+    top: 0;
+    /*height: 10%;*/
 }
 footer {
-    bottom: 0;
-    height: 100px;
-    background-color: #8a0f14;
-    color: white;
+  bottom: 0;
+  background-color: #8a0f14;
+  color: white;
+ /* padding: 1em;
+  height: 2em;
+  font-size: 0.8em;*/
+}
+
+footer > * {
+    padding: 1em;
+}
+
+#institution {
+    display: inline-block;
+    font-size: 0.8em;
+}
+div.c_footer {
+  top: auto;
+  bottom: 1.2em;
+  height: 1.2em;
+  font-size: 60%;
 }
 
 /* basic styling for all slides */
@@ -85,7 +110,7 @@ footer {
     padding-right: 20px;
     border-width: 0;
     clear: both;
-    top: 100px;
+    top: 10%;
     bottom: 0;
     left: 0;
     right: 0;
@@ -152,27 +177,7 @@ table {
 /******************
 set colours
 *******************/
-/******************
-header and footer to be displayed on all slides
-*******************/
-div.c_header,
-div.c_footer {
-    display: block;
-    position: fixed;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-div.c_header {
-    top: 0px;
-    height: 20px;
-}
-footer,
-div.c_footer {
-    top: auto;
-    bottom: 1.2em;
-    height: 1.2em;
-    font-size: 60%;
-}
+
 /***************
 standard classes
 ***************/
@@ -386,8 +391,8 @@ div.toc-heading {
 /****************
 images and figures
 *****************/
-img,
-iframe {
+div.slide img,
+div.slide iframe {
     /* image-rendering: optimize-quality; */
     /* width: 100%; */
     /*margin-top: 1em;*/
@@ -423,11 +428,23 @@ div.figure img {
     max-width: 95%;
     /*height: inherit;*/
 }
+header img,
+footer img {
+    display: block;
+}
 /* inline images */
 p img,
 li img {
     display: inline-block;
     height: 1em;
+}
+img.c_logo {
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    max-width: 6em;
+    max-height: 4em;
 }
 /*img {
   max-height: 700px;

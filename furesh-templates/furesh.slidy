@@ -45,7 +45,8 @@ $for(include-before)$
 $include-before$
 $endfor$
 <header>
-  <img scr="../../../assets/logo_hu.png">
+  <img class="c_left c_logo" src="../../../assets/images/logo_furesh-yellow.png">
+  <img class="c_right c_logo" src="../../../assets/images/hu_siegel_rgb.png">
 </header>
 $if(title)$
 <div class="slide titlepage">
@@ -78,7 +79,7 @@ $for(include-after)$
 $include-after$
 $endfor$
 <footer>
-  <span id="institution">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
+  <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
   </footer>
 </body>
 </html>
