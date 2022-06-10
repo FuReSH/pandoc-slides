@@ -81,19 +81,28 @@ footer {
   font-size: 0.8em;*/
 }
 
-footer > * {
-    padding: 1em;
+footer {
+    /*padding: 1em;*/
+    font-size: 0.8em;
 }
 
-#institution {
+footer span {
+    text-transform:  capitalize; /*this doesn't seem to have an effect*/
     display: inline-block;
-    font-size: 0.8em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 div.c_footer {
   top: auto;
   bottom: 1.2em;
   height: 1.2em;
   font-size: 60%;
+}
+div.c_frame {
+    /*padding: 1em;*/
+    margin-top: 1em;
+    margin-left: 3em;
+    margin-right: 3em;
 }
 
 /* basic styling for all slides */
@@ -151,7 +160,7 @@ h5 {
     /*font-family: "Segoe UI", Arial, freesans, sans-serif;*/
     /*font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;*/
     font-family: "American Typewriter", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
-    font-weight: lighter;
+    font-weight: 400;
     color: #113868;
 }
 p,
