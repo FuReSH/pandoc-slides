@@ -59,7 +59,7 @@ done
 
 ## Make scripts executable
 
-Jedes neue Script muss auf Unix-Systemen mit `$ chmod u+x path/to/script.sh` ausführbar gemacht werden. 
+Jedes neue Script muss auf Unix-Systemen mit `$ chmod u+x path/to/script.sh` ausführbar gemacht werden. Nutze `$ chmod -R u+x *.sh` um alle shell scripte in einem Ordner ausführbarzu machen.
 
 # Powerpoint
 ## Fehler
