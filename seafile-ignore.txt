@@ -1,0 +1,7 @@
+# Apple
+.DS_Store
+# invisible files and folders
+.*
+# Git
+.git
+.gitignore
