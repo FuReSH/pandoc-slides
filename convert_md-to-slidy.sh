@@ -1,14 +1,11 @@
 #!/bin/bash
-# change into the script directory
-current_dir=$(dirname "${BASH_SOURCE[0]}")
-cd $current_dir && pwd
 # path to input directory
-input_dir="$current_dir/_input"
+input_dir="./_input"
 #  path to output directory
-output_dir="$current_dir/_output"
+output_dir="./_output"
 #  path to csl
-csl_dir="$current_dir/furesh-templates/csl"
-css_dir="$current_dir/furesh-templates/css"
+csl_dir="./furesh-templates/csl"
+css_dir="./furesh-templates/css"
 csl="$csl_dir/chicago-author-date_slides.csl"
 # path to template directory
 templates_dir="$current_dir/furesh-templates"
@@ -16,11 +13,9 @@ templates_dir="$current_dir/furesh-templates"
 output_format="slidy"
 template="furesh.slidy"
 output_name="furesh.html"
-# cd into _input directory
-cd $input_dir && pwd
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 # note that --template is called --reference-doc for pptx
-for file in *.md;  
+for file in $input_dir/*.md;  
 	do name=${file%.*}
 	   #pandoc -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;  
 	   docker run --rm \
