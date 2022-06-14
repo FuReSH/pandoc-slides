@@ -22,5 +22,9 @@ cd $input_dir && pwd
 # note that --template is called --reference-doc for pptx
 for file in *.md;  
 	do name=${file%.*}
-	    pandoc -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+	   #pandoc -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+	   docker run --rm \
+       --volume "$(pwd):/data" \
+       --user $(id -u):$(id -g) \
+       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
 done
