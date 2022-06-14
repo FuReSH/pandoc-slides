@@ -20,7 +20,7 @@ output_name="furesh.html"
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 for file in $input_dir/*.md;  
 	do 
-		[[ "$file" =~ [a-z0-9]+.md ]]
+		[[ "$file" =~ \/[a-z0-9]+ ]]
 		name="${BASH_REMATCH[0]}"
 	    #pandoc -s -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
 		docker run --rm \
