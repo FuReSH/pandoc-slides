@@ -8,7 +8,7 @@ institute: Future e-Research Support in the Humanities, Humboldt-Universität zu
 date: 2022-04-27 
 status: draft
 licence: https://creativecommons.org/licenses/by/4.0/
-bibliography: /BachCloud/HUBox/assets/bibliography/FuReSH.csl.json
+bibliography: https://furesh.github.io/slides/assets/bibliography/FuReSH.csl.json
 markdown: pandoc
 lang: de
 tags:
@@ -16,7 +16,6 @@ tags:
 ---
 
 # Sample show
-
 ## Getting up
 
 - Turn off alarm
@@ -24,7 +23,7 @@ tags:
 
 ------------------
 
-![black box](../../../assets/images/blackbox/rId22.png)
+![black box](https://furesh.github.io/slides/assets/images/blackbox/rId22.png)
 
 ## Multi-column layout
 
