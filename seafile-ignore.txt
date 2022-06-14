@@ -3,5 +3,5 @@
 # invisible files and folders
 .*
 # Git
-.git
+.git/*
 .gitignore
