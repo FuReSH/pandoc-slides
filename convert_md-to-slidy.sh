@@ -11,7 +11,7 @@ csl_dir="./furesh-templates/csl"
 css_dir="./furesh-templates/css"
 csl="$csl_dir/chicago-author-date_slides.csl"
 # path to template directory
-templates_dir="$current_dir/furesh-templates"
+templates_dir="./furesh-templates"
 # variables
 output_format="slidy"
 template="furesh.slidy"
