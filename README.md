@@ -5,7 +5,7 @@ author:
     - Sophie Eckenstaler 
     - Till Grallert
 affiliation: Future e-Research Support in the Humanities, Humboldt-Universität zu Berlin
-date: 2022-04-27 
+date: 2022-06-23
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
@@ -17,9 +17,15 @@ tags:
     - FuReSH
 ---
 
-## Allgemeines
+# To do
 
-Dieser Ordner enthält Vorlagen, Bashscripte und CSL Stile um mit der Hilfe von Pandoc aus Markdown-Dateien verschiedene Outputformate zu generieren. Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bashscripte nach diesen Ordnern suchen:
+- Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker 
+
+# Allgemeines
+
+Dieser Ordner enthält Vorlagen, Bashscripte und CSL Stile um mit der Hilfe von Pandoc aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über Docker implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus.
+
+Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bashscripte nach diesen Ordnern suchen:
 
 - `_input/`: temporärer Ordner für Inputdateien. Diese müssen den Markdown-Konventionen entsprechen und mit der Dateiendung `.md` versehen sein
 - `_output/`: temporärer Ordner für den durch die Bashscripte erzeugten Output
@@ -31,7 +37,44 @@ Dieser Ordner enthält Vorlagen, Bashscripte und CSL Stile um mit der Hilfe von 
 
 Da die Inputdateien im Regelfall aus ihrem Ursprungskontext in the `_input/` Ordner verschoben werden, werden relative Links zu Bibliographien etc. im YAML Block der Inputdatei brechen. Diese müssen daher vor der Ausführung der Bashscripte kontrolliert und ggfs. korrigiert werden.
 
-## Bash scripte
+# Bash scripte
+## mit Docker
+
+```bash
+#!/bin/bash
+# change into the script directory
+current_dir=$(dirname "${BASH_SOURCE[0]}")
+cd $current_dir && pwd
+# path to input directory
+input_dir="./_input"
+#  path to output directory
+output_dir="./_output"
+#  path to csl
+csl_dir="./furesh-templates/csl"
+css_dir="./furesh-templates/css"
+csl="$csl_dir/chicago-author-date_slides.csl"
+# path to template directory
+templates_dir="./furesh-templates"
+# output variables
+output_format="slidy"
+template="furesh.slidy"
+output_name="furesh.html"
+# convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
+# note that --template is called --reference-doc for pptx
+for file in $input_dir/*.md;  
+	do 
+      [[ "$file" =~ \/[a-z0-9]+ ]]
+		name="${BASH_REMATCH[0]}"
+	   docker run --rm \
+       --volume "$(pwd):/data" \
+       --user $(id -u):$(id -g) \
+       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
+done
+```
+
+## ohne Docker
+
+Dies erfordert, dass Pandoc auf dem lokalen System installiert ist und die Versionen von `pandoc-crossref` und `pandoc` miteinander kompatibel sind.
 
 ```bash
 #!/bin/bash
