@@ -19,9 +19,8 @@ tags:
 
 # To do
 
-* siehe [Bug](#abbildungen)
-
-[x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker 
+- [ ] siehe [Bug](#abbildungen)
+- [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 
 # Allgemeines
 
