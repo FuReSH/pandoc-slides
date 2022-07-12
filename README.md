@@ -19,7 +19,8 @@ tags:
 
 # To do
 
-- Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker 
+- [ ] siehe [Bug](#abbildungen)
+- [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 
 # Allgemeines
 
@@ -68,7 +69,7 @@ for file in $input_dir/*.md;
 	   docker run --rm \
        --volume "$(pwd):/data" \
        --user $(id -u):$(id -g) \
-       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
+       pandoc/core:2.18 -f markdown -t $output_format -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
 done
 ```
 
@@ -96,7 +97,7 @@ cd $input_dir && pwd
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 for file in *.md;  
 	do name=${file%.*}
-	    pandoc -f markdown -t pptx --filter=pandoc-crossref --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+	    pandoc -f markdown -t pptx -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
 done
 ```
 
@@ -145,6 +146,12 @@ Potentiel entstehen Fehler, wenn in den Formatvorlagen die einzelnen Folien nich
 ## Literaturangaben
 
 Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DigitalHumanitiesCoursebook]
+
+## <a id="abbildungen"></a> Abbildungen
+
+Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
+
+**Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
 
 # Sample show
 

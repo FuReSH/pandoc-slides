@@ -21,6 +21,6 @@ for file in $input_dir/*.md;
 		docker run --rm \
        	--volume "$(pwd):/data" \
        	--user $(id -u):$(id -g) \
-       	pandoc/core:2.18 -s -f markdown -t pptx --filter=pandoc-crossref --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;
+       	pandoc/core:2.18 -s -f markdown -t pptx --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;
 
 done
