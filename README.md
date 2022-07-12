@@ -5,7 +5,7 @@ author:
     - Sophie Eckenstaler 
     - Till Grallert
 affiliation: Future e-Research Support in the Humanities, Humboldt-Universität zu Berlin
-date: 2022-06-23
+date: 2022-07-12
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
@@ -21,6 +21,13 @@ tags:
 
 - [ ] siehe [Bug](#abbildungen)
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
+- [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
+
+## Abbildungen {#abbildungen}
+
+Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
+
+**Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
 
 # Allgemeines
 
@@ -37,6 +44,14 @@ Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bas
 ## Wichtig: relative Links im YAML
 
 Da die Inputdateien im Regelfall aus ihrem Ursprungskontext in the `_input/` Ordner verschoben werden, werden relative Links zu Bibliographien etc. im YAML Block der Inputdatei brechen. Diese müssen daher vor der Ausführung der Bashscripte kontrolliert und ggfs. korrigiert werden.
+
+## Literaturangaben
+
+Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DigitalHumanitiesCoursebook]
+
+## Graphiken mit Miroboards
+
+Um das Seitenverhältnis des Viewports auf 16:9 Bildschirmen abzubilden, sollten "Frames" mit dem Seitenverhältnis 16:9 als Grundlage gewählt werden
 
 # Bash scripte
 ## mit Docker
@@ -142,16 +157,6 @@ Potentiel entstehen Fehler, wenn in den Formatvorlagen die einzelnen Folien nich
 	+ >This layout is used for any slides which only contain blank content, e.g. a slide containing only speaker notes, or a slide containing only a non-breaking space.
 - Title and Content
 	+ >This layout is used for all slides which do not match the criteria for another layout.
-
-## Literaturangaben
-
-Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DigitalHumanitiesCoursebook]
-
-## <a id="abbildungen"></a> Abbildungen
-
-Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
-
-**Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
 
 # Sample show
 
