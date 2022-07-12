@@ -68,7 +68,7 @@ for file in $input_dir/*.md;
 	   docker run --rm \
        --volume "$(pwd):/data" \
        --user $(id -u):$(id -g) \
-       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
+       pandoc/core:2.18 -f markdown -t $output_format -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
 done
 ```
 
@@ -96,7 +96,7 @@ cd $input_dir && pwd
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 for file in *.md;  
 	do name=${file%.*}
-	    pandoc -f markdown -t pptx --filter=pandoc-crossref --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+	    pandoc -f markdown -t pptx -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
 done
 ```
 

@@ -23,7 +23,11 @@ tags:
 
 ------------------
 
-![black box](https://furesh.github.io/slides/assets/images/blackbox/rId22.png)
+## Abbildungen
+
+Zur Nummerierung von Abbildungen (siehe [@fig:black-box]) wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch).
+
+![black box](https://furesh.github.io/slides/assets/images/blackbox/rId22.png){#fig:black-box}
 
 ## Multi-column layout
 
