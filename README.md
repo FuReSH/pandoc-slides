@@ -19,7 +19,9 @@ tags:
 
 # To do
 
-- Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker 
+* siehe [Bug](#abbildungen)
+
+[x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker 
 
 # Allgemeines
 
@@ -145,6 +147,12 @@ Potentiel entstehen Fehler, wenn in den Formatvorlagen die einzelnen Folien nich
 ## Literaturangaben
 
 Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DigitalHumanitiesCoursebook]
+
+## <a id="abbildungen"></a> Abbildungen
+
+Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
+
+**Bug:** Interpretiert Markdown Tag für Überschriften nicht
 
 # Sample show
 
