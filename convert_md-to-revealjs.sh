@@ -13,9 +13,9 @@ csl="$csl_dir/chicago-author-date_slides.csl"
 # path to template directory
 templates_dir="./furesh-templates"
 # variables
-output_format="slidy"
-template="furesh.slidy"
-output_name="furesh_slidy.html"
+output_format="revealjs"
+template="furesh.revealjs"
+output_name="furesh_revealjs.html"
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 # note that --template is called --reference-doc for pptx
 for file in $input_dir/*.md;  
