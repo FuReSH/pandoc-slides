@@ -151,7 +151,7 @@ Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` ge
 
 Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
 
-**Bug:** Interpretiert Markdown Tag für Überschriften nicht
+**Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
 
 # Sample show
 
