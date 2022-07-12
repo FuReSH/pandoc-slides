@@ -16,7 +16,7 @@
 [lang = "he"],
 [lang *= "-Arab-AR"] {
     direction: rtl;
-    text-align: right;
+    text-align: right !important;
     font-family: AmiriWeb, Helvetica, Arial, sans-serif;
     /*keep in mind that relative sizes (%, em) 
     accumulate for nested elements and must thus be avoided. 
@@ -31,8 +31,12 @@
 [lang *= "ar-Latn-"],
 [lang *= "ota-Latn-"] {
     direction: ltr;
-    text-align: left;
+    text-align: left !important;
     /*    font-size: 14px;*/
+}
+/* counter default settings in reveal.css */
+.reveal .slides {
+    text-align: left;
 }
 
 html,
