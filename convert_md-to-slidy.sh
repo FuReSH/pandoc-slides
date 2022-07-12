@@ -25,5 +25,5 @@ for file in $input_dir/*.md;
 	   docker run --rm \
        --volume "$(pwd):/data" \
        --user $(id -u):$(id -g) \
-       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
+       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slides-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
 done
