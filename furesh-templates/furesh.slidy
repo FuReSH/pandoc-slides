@@ -22,7 +22,7 @@
       <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
       <style type="text/css">
         $styles.html()$
-    </style>
+        </style>
     <!-- <link rel="stylesheet" type="text/css" media="screen, projection, print" href="$slidy-url$/styles/slidy.css" /> -->
     $for(css)$
     <link rel="stylesheet" type="text/css" media="screen, projection, print"
@@ -96,6 +96,5 @@
             <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
             </div>
         </footer>
-
     </body>
 </html>
