@@ -53,6 +53,18 @@ Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` ge
 
 Um das Seitenverhältnis des Viewports auf 16:9 Bildschirmen abzubilden, sollten "Frames" mit dem Seitenverhältnis 16:9 als Grundlage gewählt werden
 
+## Notizen für die Präsentierende
+
+Einige Ausgabeformate unterstützen Notizen für die Präsentierenden: `reveal.js`, `PowerPoint (.pptx)`. Das Format sind `div`s der Klasse "notes":
+
+```md
+::: notes
+
+Eine Notiz
+
+:::
+```
+
 # Bash scripte
 ## mit Docker
 
