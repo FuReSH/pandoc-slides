@@ -23,11 +23,40 @@ tags:
 
 ------------------
 
-## Abbildungen
+## Abbildungen und Tabellen
 
-Zur Nummerierung von Abbildungen (siehe [@fig:black-box]) wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch).
+Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Auf diese kann dann mit `[@fig:black-box]` im Text verwiesen werden: (siehe [@fig:black-box]). Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (momentan deutsch).
+
+::: columns
+:::: column
 
 ![black box](https://furesh.github.io/slides/assets/images/blackbox/rId22.png){#fig:black-box}
+::::
+:::: column
+
+|         term        | freq | freq.rel |
+| ------------------- | ---- | -------- |
+| R                   |  259 |        1 |
+| TEI                 |  155 |      0.6 |
+| internet            |  134 |     0.52 |
+| NLP                 |  118 |     0.46 |
+| XML                 |  117 |     0.45 |
+| GitHub              |   98 |     0.38 |
+| API                 |   88 |     0.34 |
+| OA                  |   77 |      0.3 |
+| ML                  |   76 |     0.29 |
+| GIS                 |   70 |     0.27 |
+
+: Absolute und relative Häufigkeit von Begriffen, ADHO Konferenzen, 2014--18 {#tbl:freq-adho}
+
+::::
+:::
+
+::: notes
+
+- ein Kommentar zu dieser Folie
+
+:::
 
 ## Multi-column layout
 
