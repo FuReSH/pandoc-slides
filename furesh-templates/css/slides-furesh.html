@@ -54,8 +54,8 @@ body,
     overflow: hidden;
     /*font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; 
   font-size: 12px;*/
-    line-height: 1.2; 
-    word-wrap: break-word;
+  line-height: 1.2; 
+  word-wrap: break-word;
 }
 body,
 .reveal-viewport {
@@ -639,13 +639,11 @@ ol {
 ul li,
 ol li {
     margin-top: 0.2em;
-/*margin-right: 0em;*/
-margin-bottom: 0.2em;
-/*margin-left: 1.5em;*/
-padding: 0 0 0 0px;
-line-height: 120%;
-font-size: inherit;
-font-style: normal;
+    margin-bottom: 0.2em;
+    padding: 0 0 0 0px;
+    line-height: 120%;
+    font-size: inherit;
+    font-style: normal;
 }
 li li {
     font-size: inherit;
@@ -712,6 +710,18 @@ li ol li {
 li li ol li {
     list-style-type: decimal;
 }
+
+/***********
+indentation of nested lists
+***********/
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    padding-inline-start: 2em;
+}
+
 /*this is to accomodated the snipped highlight js*/
 pre ul li {
     margin-top: 0;
