@@ -31,7 +31,7 @@ Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende geset
 
 # Allgemeines
 
-Dieser Ordner enthält Vorlagen, Bashscripte und CSL Stile um mit der Hilfe von Pandoc aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über Docker implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus.
+Dieser Ordner enthält Vorlagen, Bashscripte und CSL Stile um mit der Hilfe von Pandoc aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über Docker implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus. Pandoc bietet [offizielle Docker images](https://hub.docker.com/r/pandoc/core) an, die sogar die wichtigsten Erweiterungen, wie z.B. den `pandoc-crossref` Filter enthalten, der ansonsten manuell installiert werden muss.
 
 Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bashscripte nach diesen Ordnern suchen:
 
@@ -65,8 +65,15 @@ Eine Notiz
 :::
 ```
 
-# Bash scripte
-## mit Docker
+# mit Docker
+
+Die präferierte Option ist, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. 
+
+## ARM Macs
+
+Es gibt allerdings potentiell Probleme mit neuen ARM Macs, da nicht alle Docker Images für diese Architektur vorliegen. In dem Fall muss die `--platform` Flag gesetzt werden: `--platform linux/amd64` oder über `platform: linux/amd64` in einem Docker `compose.yaml`
+
+## Beispiel
 
 ```bash
 #!/bin/bash
