@@ -45,7 +45,7 @@
         $include-before$
         $endfor$
         <header>
-            <img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png">
+            <!-- <img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png"> -->
             <img class="c_right c_logo" src="https://furesh.github.io/slides/assets/images/hu_siegel_rgb.png">
         </header>
         $if(title)$
