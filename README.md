@@ -65,6 +65,31 @@ Eine Notiz
 :::
 ```
 
+## Spalten
+
+Zusätzlich zu den von Pandoc direkt unterstützten zweispaltigen Folien, enthält unser CSS Angaben für dreispaltige Layouts. Dieses wird über `<div>`s der Klasse `columns-3` umgesetzt:
+
+```md
+::: columns-3
+:::: column
+
+Erste Spalte
+
+::::
+:::: column
+
+Zweite Spalte
+
+::::
+:::: column
+
+Dritte Spalte
+
+::::
+:::
+```
+
+
 # mit Docker
 
 Die präferierte Option ist, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. 
@@ -138,6 +163,18 @@ done
 ## Make scripts executable
 
 Jedes neue Script muss auf Unix-Systemen mit `$ chmod u+x path/to/script.sh` ausführbar gemacht werden. Nutze `$ chmod -R u+x *.sh` um alle shell scripte in einem Ordner ausführbarzu machen.
+
+# HTML Folien
+
+Für HTML Folien benutzen wir das [revealJS Framework](https://revealjs.com), das nativ von Pandoc unterstützt wird.
+
+## Hintergrundbilder für Toplevel-Folien
+
+Um Hintergründe zu Toplevel-Folien hinzuzufügen, muss das `@data-background-image="path-to-image"` Attribute gesetzt werden:
+
+```md
+# How did they build this? {data-background-image="https://furesh.github.io/slides/assets/images/blackbox/black-box_question-mark-people-c_blue.png" data-background-size="90%"}
+```
 
 # Powerpoint
 ## Fehler
