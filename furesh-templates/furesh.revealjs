@@ -267,16 +267,19 @@
 
         parallaxBackgroundVertical: $parallaxBackgroundVertical$,
         $endif$
-        $if(width)$
 
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
+        $if(width)$
         width: $width$,
+        $else$
+        width: 1000,
         $endif$
         $if(height)$
-
         height: $height$,
+        $else$
+        height: 800,
         $endif$
         $if(margin)$
 
