@@ -513,7 +513,9 @@ columns
 .columns-2 > .column {
     width: 50%;
 }
-.c_width-60 {
+.c_width-60,
+.column-60,
+.columns .wide {
     width: 64%;
     position: relative;
     float: left;
@@ -523,7 +525,9 @@ columns
     position: relative;
     float: left;
 }
-.c_width-30 {
+.c_width-30,
+.column-30,
+.columns .narrow {
     width: 33%;
     position: relative;
     float: left;
@@ -596,8 +600,15 @@ li pre {
 }
 blockquote {
     padding-left: 1em;
+    padding-left: 1em;
+    margin-bottom: 1em;
+    text-align: right;
     /*font-style: italic;*/
     clear: both;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 blockquote > p:before {
     content: "> "
@@ -630,7 +641,9 @@ ol {
     font-style: normal;
     margin-top: 0.1em;
     margin-bottom: 0.5em;
-    margin-left: 0.5em;
+    /*margin-left: 1.5em;*/
+    list-style-position: inside;
+    padding-left: 1em;
     /* all lists should be centered */
     /*text-align: left;*/
     /*margin-left: auto;
@@ -751,8 +764,8 @@ h5,
 h6,
 dl,
 table {
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }

@@ -53,6 +53,17 @@ Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` ge
 
 Um das Seitenverhältnis des Viewports auf 16:9 Bildschirmen abzubilden, sollten "Frames" mit dem Seitenverhältnis 16:9 als Grundlage gewählt werden
 
+## Grafiken als Hintergrundbild(er)
+
+Es gibt mehrer Möglichkeiten Hintergrundbilder einzubinden.
+
+1. für die Gesamte Präsentation: über das YAML im Kopf der Datei `background-image: path-to-image`
+2. für einzelne Slides
+
+```md
+# Folientitel {data-background-image="path-to-image" data-background-size="90%"}
+```
+
 ## Notizen für die Präsentierende
 
 Einige Ausgabeformate unterstützen Notizen für die Präsentierenden: `reveal.js`, `PowerPoint (.pptx)`. Das Format sind `div`s der Klasse "notes":
@@ -89,6 +100,23 @@ Dritte Spalte
 :::
 ```
 
+Außerdem können Spalten mit verschiedener Breite angelegt werden
+
+```md
+::: columns
+:::: narrow
+
+eine schmale Spalte
+
+::::
+:::: wide
+
+eine breite Spalte
+
+::::
+:::
+
+```
 
 # mit Docker
 
