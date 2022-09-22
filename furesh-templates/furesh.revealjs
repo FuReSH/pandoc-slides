@@ -59,7 +59,7 @@
         <section id="$idprefix$title-slide"$for(title-slide-attributes/pairs)$ $it.key$="$it.value$"$endfor$>
           <h1 class="title">$title$</h1>
           $if(subtitle)$
-          <p class="subtitle">$subtitle$</p>
+          <h2 class="subtitle">$subtitle$</h2>
           $endif$
           $for(author)$
           <p class="author">$author$</p>
@@ -67,8 +67,19 @@
           $for(institute)$
           <p class="institute">$institute$</p>
           $endfor$
+          $if(event)$
+          <p class="event">
+            $if(panel)$
+            <span>Panel "$panel$"</span>
+            $endif$
+            <span>at $event$</span>
+          </p>
+          $endif$
           $if(date)$
           <p class="date">$date$</p>
+          $endif$
+          $if(url)$
+          <p class="url"><a href="$url$">$url$</a></p>
           $endif$
         </section>
         $endif$
