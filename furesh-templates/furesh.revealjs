@@ -61,9 +61,13 @@
           $if(subtitle)$
           <h2 class="subtitle">$subtitle$</h2>
           $endif$
+          $if(author)$
+          <p class="author">
           $for(author)$
-          <p class="author">$author$</p>
+            <span class="author">$author$</span>
           $endfor$
+          </p>
+          $endif$
           $for(institute)$
           <p class="institute">$institute$</p>
           $endfor$
