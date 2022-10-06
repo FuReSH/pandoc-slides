@@ -548,6 +548,47 @@ columns
     display: block;
     float: right;
 }
+
+/*****************
+blackbox
+******************/
+
+.blackbox  * {
+    font-size: inherit;
+    font-family: inherit;
+}
+.blackbox > div,
+.blackbox > section {
+    width: 32%;
+    position: relative;
+    /*float: left;*/
+    min-height: 5em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.blackbox > .input,
+.blackbox > .output {
+    width: 25%;
+    background-color: rgba(245, 245, 245, 1);
+}
+.blackbox > .input {
+    float: left;
+}
+.blackbox textarea {
+    min-height: inherit;
+    background-color: inherit;
+}
+.blackbox > .computing {
+    background-color: black;
+    min-height: 5em;
+    /*padding: 1em;*/
+    margin: 0 auto;
+    color: white;
+}
+.blackbox > .output {
+    float: right;
+}
+
 /*****************
 writing direction
 ******************/
