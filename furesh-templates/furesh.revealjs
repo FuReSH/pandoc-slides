@@ -62,15 +62,17 @@
           <h2 class="subtitle">$subtitle$</h2>
           $endif$
           $if(author)$
-          <p class="author">
-          $for(author)$
-            <span class="author">$author$</span>
-          $endfor$
-          </p>
+            <p class="author">
+            $for(author)$
+              $author$$sep$, $endfor$
+            </p>
           $endif$
-          $for(institute)$
-          <p class="institute">$institute$</p>
-          $endfor$
+          $if(institute)$
+            <p class="institute">
+              $for(institute)$
+              $institute$$sep$, $endfor$
+            </p>
+          $endif$
           $if(event)$
           <p class="event">
             $if(panel)$
