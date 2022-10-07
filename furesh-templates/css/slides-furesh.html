@@ -723,6 +723,25 @@ button {
   }
 }
 
+.hidden {
+        /*display: none;*/
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        animation: 1s fadeOut;
+    }
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 /*****************
 writing direction
 ******************/
