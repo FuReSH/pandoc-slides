@@ -29,8 +29,7 @@ for file in $input_dir/*.md;
        	--volume "$(pwd):/data" \
        	--user $(id -u):$(id -g) \
        	--platform $platform \
-       	pandoc/$pandoc_image -s -f markdown -t docx \
-       	--filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
+       	pandoc/$pandoc_image -s -f markdown -t $output_format \
        	--citeproc --csl $csl \
        	--reference-doc $templates_dir/$template \
        	$file -o $output_dir/$name-$output_name;
