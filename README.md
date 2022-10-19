@@ -5,7 +5,7 @@ author:
     - Sophie Eckenstaler 
     - Till Grallert
 affiliation: Future e-Research Support in the Humanities, Humboldt-Universität zu Berlin
-date: 2022-07-12
+date: 2022-10-19
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
@@ -17,52 +17,123 @@ tags:
     - FuReSH
 ---
 
-# To do
+# 1. To do
 
-- [ ] siehe [Bug](#abbildungen)
+- [ ] [Deutsche Label von Abbildungen](#abbildungen)
+- [ ] Docker auf ARM Macs
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
 
-## Abbildungen {#abbildungen}
+# 2. Allgemeines
 
-Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
-
-**Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
-
-# Allgemeines
-
-Dieser Ordner enthält Vorlagen, Bashscripte und CSL Stile um mit der Hilfe von Pandoc aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über Docker implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus. Pandoc bietet [offizielle Docker images](https://hub.docker.com/r/pandoc/core) an, die sogar die wichtigsten Erweiterungen, wie z.B. den `pandoc-crossref` Filter enthalten, der ansonsten manuell installiert werden muss.
+Dieser Ordner enthält Vorlagen, Bashscripte und [CSL](https://citationstyles.org) Stile um mit der Hilfe von [Pandoc](https://pandoc.org) aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über [Docker](http://docker.com) implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus. Pandoc bietet [offizielle Docker images](https://hub.docker.com/r/pandoc/core) an, die sogar die wichtigsten Erweiterungen, wie z.B. den `pandoc-crossref` Filter enthalten, der ansonsten manuell installiert werden müsste.
 
 Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bashscripte nach diesen Ordnern suchen:
 
 - `_input/`: temporärer Ordner für Inputdateien. Diese müssen den Markdown-Konventionen entsprechen und mit der Dateiendung `.md` versehen sein
 - `_output/`: temporärer Ordner für den durch die Bashscripte erzeugten Output
 - `furesh-templates/`: Ordner für Formatvorlagen
-	+ `csl/`: Ordner für CSL Zitationsstile
+	+ `csl/`: Ordner für `CSL` Zitationsstile
+	+ `css/`: Ordner für `CSS` includes. Diese müssen `HTML` Snippets sein, also `CSS`, das von einem `<style type="text/css">` Tag umgeben ist.
 - `pandoc-templates/`: Ordner mit Kopien der Standardvorlagen für Pandoc
 
 ## Wichtig: relative Links im YAML
 
 Da die Inputdateien im Regelfall aus ihrem Ursprungskontext in the `_input/` Ordner verschoben werden, werden relative Links zu Bibliographien etc. im YAML Block der Inputdatei brechen. Diese müssen daher vor der Ausführung der Bashscripte kontrolliert und ggfs. korrigiert werden.
 
+# 3. Installation und Ausführung
+
+Nach dem Download dieses GitHub Repositoriums, müssen die Shell-Skripte ausführbar gemacht werden. Auf Unix-Systemen funktioniert dies mit dem Befehl `$ chmod u+x path/to/script.sh`. Mit `$ chmod -R u+x *.sh` können alle Shell-Skripte in einem Ordner ausführbar gemacht werden.
+
+## mit Docker
+
+Die präferierte und aktuell implementierte Option ist es, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. 
+
+### ARM Macs
+
+Es gibt allerdings potentiell Probleme mit neuen ARM Macs, da nicht alle Docker Images für diese Architektur vorliegen. In dem Fall muss die `--platform` Flag gesetzt werden: `--platform linux/amd64` oder über `platform: linux/amd64` in einem Docker `compose.yaml`
+
+### Beispiel
+
+```bash
+#!/bin/bash
+# change into the script directory
+current_dir=$(dirname "${BASH_SOURCE[0]}")
+cd $current_dir && pwd
+# path to input directory
+input_dir="./_input"
+#  path to output directory
+output_dir="./_output"
+#  path to csl
+csl_dir="./furesh-templates/csl"
+css_dir="./furesh-templates/css"
+csl="$csl_dir/chicago-author-date_slides.csl"
+# path to template directory
+templates_dir="./furesh-templates"
+# output variables
+output_format="slidy"
+template="furesh.slidy"
+output_name="furesh.html"
+# convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
+# note that --template is called --reference-doc for pptx
+for file in $input_dir/*.md;  
+	do 
+      [[ "$file" =~ \/[a-z0-9]+ ]]
+		name="${BASH_REMATCH[0]}"
+	   docker run --rm \
+       --volume "$(pwd):/data" \
+       --user $(id -u):$(id -g) \
+       pandoc/core:2.18 -f markdown -t $output_format -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
+done
+```
+
+## ohne Docker
+
+Dies erfordert, dass Pandoc auf dem lokalen System installiert ist und die Versionen von `pandoc-crossref` und `pandoc` miteinander kompatibel sind.
+
+### Beispiel
+
+```bash
+#!/bin/bash
+# change into the script directory
+current_dir=$(dirname "${BASH_SOURCE[0]}")
+cd $current_dir && pwd
+# path to input directory
+input_dir="$current_dir/_input"
+#  path to output directory
+output_dir="$current_dir/_output"
+#  path to templates directory
+templates_dir="$current_dir/furesh-templates"
+csl="$templates_dir/csl/chicago-author-date_slides.csl"
+# select template and output file name to be appended to the input file name
+template="furesh-16to9-ccby.pptx"
+output_name=$template
+# cd into _input directory
+cd $input_dir && pwd
+# convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
+for file in *.md;  
+	do name=${file%.*}
+	    pandoc -f markdown -t pptx -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+done
+```
+
+# Formattierung der Markdown-Dateien
+
+Die Formattierung von Markdown-Datein für Slideshows wird im [Pandoc Manual](https://pandoc.org/MANUAL.html#slide-shows) beschrieben.
+
 ## Literaturangaben
 
 Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DigitalHumanitiesCoursebook]
 
+## Abbildungen {#abbildungen}
+
+Abbildungen werden mit der Standardsyntax (`![alt text / caption](image-url.png)`) eingefügt. Zur Nummerierung von Abbildungen mit `pandoc-crossref` wird einfach `{#fig:your-label}` ans Ende gesetzt. Mit `pandoc-crossref-de.yml` wird die standardmäßige englische Ausgabe überschrieben (akutell deutsch). Referenziert werden Abbildungen mit `[@fig:your-label]`. Mit `\listoffigures` kann ein Abbildungsverzeichnis generiert werden.
+
+**Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
+
 ## Graphiken mit Miroboards
 
 Um das Seitenverhältnis des Viewports auf 16:9 Bildschirmen abzubilden, sollten "Frames" mit dem Seitenverhältnis 16:9 als Grundlage gewählt werden
-
-## Grafiken als Hintergrundbild(er)
-
-Es gibt mehrer Möglichkeiten Hintergrundbilder einzubinden.
-
-1. für die Gesamte Präsentation: über das YAML im Kopf der Datei `background-image: path-to-image`
-2. für einzelne Slides
-
-```md
-# Folientitel {data-background-image="path-to-image" data-background-size="90%"}
-```
 
 ## Notizen für die Präsentierende
 
@@ -118,98 +189,33 @@ eine breite Spalte
 
 ```
 
-# mit Docker
 
-Die präferierte Option ist, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. 
+# Outputformate
 
-## ARM Macs
+Momentan unterstützt dieses Repositorium die Erzeugung von PowerPoint und HTML Folien.
 
-Es gibt allerdings potentiell Probleme mit neuen ARM Macs, da nicht alle Docker Images für diese Architektur vorliegen. In dem Fall muss die `--platform` Flag gesetzt werden: `--platform linux/amd64` oder über `platform: linux/amd64` in einem Docker `compose.yaml`
+## HTML Folien
 
-## Beispiel
+Für HTML Folien benutzen wir das [revealJS Framework](https://revealjs.com), das nativ von Pandoc unterstützt wird. Es gibt auch noch ein Skript zur Erzeugung von `Slidy.js`Folien, diese werden aber nicht weiter gepflegt
 
-```bash
-#!/bin/bash
-# change into the script directory
-current_dir=$(dirname "${BASH_SOURCE[0]}")
-cd $current_dir && pwd
-# path to input directory
-input_dir="./_input"
-#  path to output directory
-output_dir="./_output"
-#  path to csl
-csl_dir="./furesh-templates/csl"
-css_dir="./furesh-templates/css"
-csl="$csl_dir/chicago-author-date_slides.csl"
-# path to template directory
-templates_dir="./furesh-templates"
-# output variables
-output_format="slidy"
-template="furesh.slidy"
-output_name="furesh.html"
-# convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
-# note that --template is called --reference-doc for pptx
-for file in $input_dir/*.md;  
-	do 
-      [[ "$file" =~ \/[a-z0-9]+ ]]
-		name="${BASH_REMATCH[0]}"
-	   docker run --rm \
-       --volume "$(pwd):/data" \
-       --user $(id -u):$(id -g) \
-       pandoc/core:2.18 -f markdown -t $output_format -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
-done
-```
+## Grafiken als Hintergrundbild(er) mit RevealJS
 
-## ohne Docker
+Es gibt mehrer Möglichkeiten Hintergrundbilder einzubinden.
 
-Dies erfordert, dass Pandoc auf dem lokalen System installiert ist und die Versionen von `pandoc-crossref` und `pandoc` miteinander kompatibel sind.
-
-```bash
-#!/bin/bash
-# change into the script directory
-current_dir=$(dirname "${BASH_SOURCE[0]}")
-cd $current_dir && pwd
-# path to input directory
-input_dir="$current_dir/_input"
-#  path to output directory
-output_dir="$current_dir/_output"
-#  path to templates directory
-templates_dir="$current_dir/furesh-templates"
-csl="$templates_dir/csl/chicago-author-date_slides.csl"
-# select template and output file name to be appended to the input file name
-template="furesh-16to9-ccby.pptx"
-output_name=$template
-# cd into _input directory
-cd $input_dir && pwd
-# convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
-for file in *.md;  
-	do name=${file%.*}
-	    pandoc -f markdown -t pptx -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
-done
-```
-
-## Make scripts executable
-
-Jedes neue Script muss auf Unix-Systemen mit `$ chmod u+x path/to/script.sh` ausführbar gemacht werden. Nutze `$ chmod -R u+x *.sh` um alle shell scripte in einem Ordner ausführbarzu machen.
-
-# HTML Folien
-
-Für HTML Folien benutzen wir das [revealJS Framework](https://revealjs.com), das nativ von Pandoc unterstützt wird.
-
-## Hintergrundbilder für Toplevel-Folien
-
-Um Hintergründe zu Toplevel-Folien hinzuzufügen, muss das `@data-background-image="path-to-image"` Attribute gesetzt werden:
+1. für die Gesamte Präsentation: über das YAML im Kopf der Datei `background-image: path-to-image`
+2. für einzelne Slides: über das `@data-background-image="path-to-image"` Attribut
 
 ```md
-# How did they build this? {data-background-image="https://furesh.github.io/slides/assets/images/blackbox/black-box_question-mark-people-c_blue.png" data-background-size="90%"}
+# Folientitel {data-background-image="path-to-image" data-background-size="90%"}
 ```
 
-# Powerpoint
-## Fehler
+
+## Powerpoint
+### Fehler
 
 Potentiel entstehen Fehler, wenn in den Formatvorlagen die einzelnen Folien nicht ihre englischen Standardnamen tragen. Diese dürfen nicht geändert werden, damit Pandoc die richtigen Folienvorlagen finden kann. Siehe dazu das Pandoc manual [hier](https://pandoc.org/MANUAL.html#templates) und [hier](https://pandoc.org/MANUAL.html#powerpoint-layout-choice)
 
-## Regeln
+### Regeln
 
 - There must be at least 4 slides in the slide masters, named ppt/slideLayouts/slideLayout[1-4].xml
 - ppt/slideLayouts/slideLayout1.xml is a title slide, and must:
@@ -225,7 +231,7 @@ Potentiel entstehen Fehler, wenn in den Formatvorlagen die einzelnen Folien nich
 	- have a `p:ph` element with type="title"
 	- have at least two `p:ph` elements without a type attribute
 
-## Folienvorlagen
+### Folienvorlagen
 
 - Title Slide
 	+ >This layout is used for the initial slide, which is generated and filled from the metadata fields date, author, and title, if they are present.
