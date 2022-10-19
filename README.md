@@ -124,7 +124,7 @@ Die Formattierung von Markdown-Datein für Slideshows wird im [Pandoc Manual](ht
 
 ## Literaturangaben
 
-Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DigitalHumanitiesCoursebook]
+Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DHCoursebook]
 
 ## Abbildungen {#abbildungen}
 
