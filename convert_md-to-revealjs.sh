@@ -29,10 +29,10 @@ for file in $input_dir/*.md;
        --volume "$(pwd):/data" \
        --user $(id -u):$(id -g) \
        --platform $platform \
-       pandoc/$pandoc_image -f markdown -t $output_format \
+       pandoc/$pandoc_image -s -f markdown -t $output_format \
        --citeproc --csl $csl \
        --include-in-header $css_dir/slides-furesh.html \
-       -V theme=none \
+       --variable theme=none \
        --template $templates_dir/$template \
        $file -o $output_dir/$name-$output_name;
 done
