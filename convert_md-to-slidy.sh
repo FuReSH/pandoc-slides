@@ -1,4 +1,7 @@
 #!/bin/bash
+# set platform for the Docker image
+platform="linux/amd64" # for Apple silicon this must currently be set to "linux/amd64" and will run the pandoc image through the Rosetta2 emulator
+pandoc_image="core:edge" # for Apple silicon this must be set to "core:edge"
 # change into the script directory
 current_dir=$(dirname "${BASH_SOURCE[0]}")
 cd $current_dir && pwd
@@ -25,5 +28,11 @@ for file in $input_dir/*.md;
 	   docker run --rm \
        --volume "$(pwd):/data" \
        --user $(id -u):$(id -g) \
-       pandoc/core:2.18 -f markdown -t $output_format --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slides-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
+       	--platform $platform \
+       pandoc/$pandoc_image -f markdown -t $output_format \
+       --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
+       --citeproc --csl $csl \
+       --include-in-header $css_dir/slides-furesh.html \
+       --template $templates_dir/$template \
+       $file -o $output_dir/$name-$output_name;
 done

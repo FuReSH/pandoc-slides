@@ -1,4 +1,7 @@
 #!/bin/bash
+# set platform for the Docker image
+platform="linux/amd64" # for Apple silicon this must currently be set to "linux/amd64" and will run the pandoc image through the Rosetta2 emulator
+pandoc_image="core:edge" # for Apple silicon this must be set to "core:edge"
 # change into the script directory
 current_dir=$(dirname "${BASH_SOURCE[0]}")
 cd $current_dir && pwd
@@ -6,12 +9,17 @@ cd $current_dir && pwd
 input_dir="./_input"
 #  path to output directory
 output_dir="./_output"
+#  path to csl
+csl_dir="./furesh-templates/csl"
+csl="$csl_dir/chicago-author-date_slides.csl"
+#  path to css
+css_dir="./furesh-templates/css"
 #  path to templates directory
 templates_dir="./furesh-templates"
-# files
-csl="$templates_dir/csl/chicago-author-date_slides.csl"
-template="furesh-16to9-ccby.pptx"
-output_name=".docx"
+# variables
+output_format="docx"
+template="furesh.docx"
+output_name="furesh.docx"
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 for file in $input_dir/*.md;  
 	do 
@@ -20,6 +28,11 @@ for file in $input_dir/*.md;
 		docker run --rm \
        	--volume "$(pwd):/data" \
        	--user $(id -u):$(id -g) \
-       	pandoc/core:2.18 -s -f markdown -t docx --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;
+       	--platform $platform \
+       	pandoc/$pandoc_image -s -f markdown -t docx \
+       	--filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
+       	--citeproc --csl $csl \
+       	--reference-doc $templates_dir/$template \
+       	$file -o $output_dir/$name-$output_name;
 
 done
