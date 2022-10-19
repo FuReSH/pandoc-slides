@@ -515,10 +515,20 @@ iframe {
 /*****************
 columns
 ******************/
+div.columns {
+    /* newer? versions of reveal use display: flex */
+    display: block;
+    /*flex: none;*/
+}
+div.column {
+    display: inline-block;
+    flex: none;
+}
 .columns-3 > .column {
     width: 32%;
 }
-.columns-2 > .column {
+.columns-2 > .column,
+.columns > .column {
     width: 50%;
 }
 .c_width-60,
