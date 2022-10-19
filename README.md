@@ -20,7 +20,8 @@ tags:
 # 1. To do
 
 - [ ] [Deutsche Label von Abbildungen](#abbildungen)
-- [ ] Docker auf ARM Macs
+- [ ] [Docker auf ARM Macs](#arm)
+	+ work-around: use the `ARM` branch which relies on another Pandoc image. DOES NOT include the `pandoc-crossref` filter.
 	+ There is an issue in the [Pandoc repo on Github](https://github.com/pandoc/dockerfiles/issues/134).
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
@@ -50,9 +51,9 @@ Nach dem Download dieses GitHub Repositoriums, müssen die Shell-Skripte ausfüh
 
 Die präferierte und aktuell implementierte Option ist es, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. 
 
-### ARM Macs
+### ARM Macs {#arm}
 
-Es gibt allerdings potentiell Probleme mit neuen ARM Macs, da nicht alle Docker Images für diese Architektur vorliegen. In dem Fall muss die `--platform` Flag gesetzt werden: `--platform linux/amd64` oder über `platform: linux/amd64` in einem Docker `compose.yaml`
+Es gibt allerdings potentiell Probleme mit neuen ARM Macs, da nicht alle Docker Images für diese Architektur vorliegen. In dem Fall muss die `--platform` Flag gesetzt werden: `--platform linux/amd64` oder über `platform: linux/amd64` in einem Docker `compose.yaml`. Da das aktuelle `pandoc/core:latest` image trotzdem ohne Fehlermeldung keinerlei Output produziert, sind wir für ARM Geräte auf eine eigene Branch (`ARM`) umgestiegen. Diese funktioniert, allerdings noch ohne `pandoc-crossref`.
 
 ### Beispiel
 
