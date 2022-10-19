@@ -21,12 +21,13 @@ tags:
 
 - [ ] [Deutsche Label von Abbildungen](#abbildungen)
 - [ ] Docker auf ARM Macs
+	+ There is an issue in the [Pandoc repo on Github](https://github.com/pandoc/dockerfiles/issues/134).
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
 
 # 2. Allgemeines
 
-Dieser Ordner enthält Vorlagen, Bashscripte und [CSL](https://citationstyles.org) Stile um mit der Hilfe von [Pandoc](https://pandoc.org) aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über [Docker](http://docker.com) implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus. Pandoc bietet [offizielle Docker images](https://hub.docker.com/r/pandoc/core) an, die sogar die wichtigsten Erweiterungen, wie z.B. den `pandoc-crossref` Filter enthalten, der ansonsten manuell installiert werden müsste.
+Dieser Ordner enthält Vorlagen, Bashscripte und [CSL](https://citationstyles.org) Stile um mit der Hilfe von [Pandoc](https://pandoc.org) aus Markdown-Dateien verschiedene Outputformate zu generieren. Um die Abhängigkeit von spezifischen Nutzerrechnern zu minimieren, ist der Workflow über [Docker](http://docker.com) implementiert: die Bashscripte starten jeweils einen Docker Container mit Pandoc und führen dann die Transformation innerhalb des Containers aus. Pandoc bietet [offizielle Docker images](https://hub.docker.com/r/pandoc/) an. Das `pandoc/core` Image enthält die wichtigsten Erweiterungen, wie z.B. den `pandoc-crossref` Filter und einen Konverter für SVG Grafiken, die ansonsten manuell installiert werden müssten.
 
 Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bashscripte nach diesen Ordnern suchen:
 
