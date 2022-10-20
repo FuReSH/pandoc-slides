@@ -30,7 +30,6 @@ for file in $input_dir/*.md;
        --user $(id -u):$(id -g) \
        	--platform $platform \
        pandoc/$pandoc_image -f markdown -t $output_format \
-       --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
        --citeproc --csl $csl \
        --include-in-header $css_dir/slides-furesh.html \
        --template $templates_dir/$template \
