@@ -61,7 +61,8 @@
           $if(subtitle)$
           <h2 class="subtitle">$subtitle$</h2>
           $endif$
-          <div>
+          <div class="columns">
+          <div class="column c_left c_left-align">
           $if(author)$
             <p class="author">
             $for(author)$
@@ -69,16 +70,15 @@
             </p>
           $endif$
           $if(institute)$
-            <p class="institute">
               $for(institute)$
-              $institute$$sep$, $endfor$
-            </p>
+              <p class="institute">$institute$</p>
+              $endfor$
           $endif$
           $if(homepage)$
           <p class="url"><a href="$homepage$">$homepage$</a></p>
           $endif$
         </div>
-        <div>
+        <div class="column c_right c_right-align">
           $if(event)$
           <p class="event">
             $if(panel)$
@@ -94,6 +94,7 @@
           <p class="url"><a href="$url$">$url$</a></p>
           $endif$
         </div>
+      </div>
         </section>
         $endif$
         $if(toc)$
