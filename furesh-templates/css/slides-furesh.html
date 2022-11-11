@@ -82,10 +82,11 @@ header,
 div.c_header {
     top: 0;
 }
-footer {
+footer,
+footer * {
     bottom: 0;
     background-color: #8a0f14;
-    color: white;
+    color: white !important;
 }
 
 footer {
@@ -93,7 +94,8 @@ footer {
 }
 
 footer span {
-    text-transform:  capitalize; /*this doesn't seem to have an effect*/
+    /*text-transform:  capitalize; */
+    /*this doesn't seem to have an effect*/
     display: inline-block;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -558,6 +560,24 @@ div.column {
     display: block;
     float: right;
 }
+.c_center {
+    display: block;
+    /*clear: both;*/
+    margin: 0 auto;
+}
+.c_left-align {
+    text-align: left;
+}
+
+.c_right-align {
+    text-align: right;
+}
+
+span.c_left,
+span.c_right,
+span.c_center {
+    display: inline-block;
+}
 
 /*****************
 blackbox
@@ -1000,23 +1020,33 @@ table {
     margin-left: auto;
     margin-right: auto;
     /*font-size: 0.8em;*/
-}
-tr:hover td {
-    /*background-color: red; */
-    border-top-color: #F46A00;
-    border-bottom-color: #F46A00;
-    border-bottom-width: 1px;
-    border-top-width: 1px;
-    border-bottom-style: solid;
-    border-top-style: solid;
+    border-collapse: collapse;
 }
 td,
 th {
     padding: 0.2em
 }
+td {
+    border-bottom-width: 1px;
+    /*border-top-width: 1px;*/
+    border-bottom-style: solid;
+    /*border-top-style: solid;*/
+    border-color: white;
+}
 /*
 highlight mouse-over on tables
 */
+tr:hover td {
+    /*background-color: red; */
+    /*border-top-color: #F46A00;
+    border-bottom-color: #F46A00;*/
+    border-color: #F46A00;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+td:hover {
+    background-color: #F46A00;
+}
 .focus {
     border-color: red;
     border-width: 2px;
