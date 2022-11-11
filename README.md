@@ -25,6 +25,7 @@ tags:
 	+ There is an issue in the [Pandoc repo on Github](https://github.com/pandoc/dockerfiles/issues/134).
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
+- [ ] Die im CSS festgelegten Schriften sind nicht auf allen OS standardmäßig installiert. Hier braucht es ein Fallback oder einen Hinweis auf die Installation notwendiger Fonts
 
 # 2. Allgemeines
 

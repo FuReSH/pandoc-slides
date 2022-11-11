@@ -61,6 +61,8 @@
           $if(subtitle)$
           <h2 class="subtitle">$subtitle$</h2>
           $endif$
+          <div class="columns">
+          <div class="column c_left c_left-align">
           $if(author)$
             <p class="author">
             $for(author)$
@@ -68,17 +70,21 @@
             </p>
           $endif$
           $if(institute)$
-            <p class="institute">
               $for(institute)$
-              $institute$$sep$, $endfor$
-            </p>
+              <p class="institute">$institute$</p>
+              $endfor$
           $endif$
+          $if(homepage)$
+          <p class="url"><a href="$homepage$">$homepage$</a></p>
+          $endif$
+        </div>
+        <div class="column c_right c_right-align">
           $if(event)$
           <p class="event">
             $if(panel)$
-            <span>Panel "$panel$"</span>
+            <span>Panel "$panel$" at</span>
             $endif$
-            <span>at $event$</span>
+            <span>$event$</span>
           </p>
           $endif$
           $if(date)$
@@ -87,6 +93,8 @@
           $if(url)$
           <p class="url"><a href="$url$">$url$</a></p>
           $endif$
+        </div>
+      </div>
         </section>
         $endif$
         $if(toc)$
@@ -356,6 +364,9 @@
         $endif$
         $if(author)$
             <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
+        $endif$
+        $if(homepage)$
+        <span class="c_center"><a href="$homepage$">$homepage$</a></span>
         $endif$
         <!-- this should probably moved to the title slide only -->
         <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
