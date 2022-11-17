@@ -25,8 +25,8 @@ for file in $input_dir/*.md;
 	do 
       [[ "$file" =~ \/[a-z0-9]+ ]]
 		name="${BASH_REMATCH[0]}"
-
        pandoc -s -f markdown -t $output_format \
+       --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
        --citeproc --csl $csl \
        --include-in-header $css_dir/slides-furesh.html \
        --variable theme=none \
