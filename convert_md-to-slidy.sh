@@ -25,11 +25,7 @@ for file in $input_dir/*.md;
 	do 
       [[ "$file" =~ \/[a-z0-9]+ ]]
 		name="${BASH_REMATCH[0]}"
-	   docker run --rm \
-       --volume "$(pwd):/data" \
-       --user $(id -u):$(id -g) \
-       	--platform $platform \
-       pandoc/$pandoc_image -f markdown -t $output_format \
+       pandoc -f markdown -t $output_format \
        --citeproc --csl $csl \
        --include-in-header $css_dir/slides-furesh.html \
        --template $templates_dir/$template \
