@@ -1,12 +1,46 @@
 <style type="text/css">
-/* fonts */
+/* slidy.css
+
+   Copyright (c) 2005-2010 W3C (MIT, ERCIM, Keio), All Rights Reserved.
+   W3C liability, trademark, document use and software licensing
+   rules apply, see:
+
+   http://www.w3.org/Consortium/Legal/copyright-documents
+   http://www.w3.org/Consortium/Legal/copyright-software
+*/
+
 @font-face {
     font-family: AmiriWeb;
     font-style: normal;
     font-weight: 400;
-    /*  note that the url must be relativ to the future deployment of this CSS. An absolute path might be better  */
-    src: url('../assets/fonts/amiri-regular.ttf')  format('truetype');
+    src: url('../assets/fonts/amiri/amiri-regular.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: PTSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/ptsans/PT_Sans-Web-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: PTSans;
+    font-style: italic;
+    font-weight: 400;
+    src: url('../assets/fonts/ptsans/PT_Sans-Web-Italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: PTSans;
+    font-style: regular;
+    font-weight: bold;
+    src: url('../assets/fonts/ptsans/PT_Sans-Web-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: PTSans;
+    font-style: italic;
+    font-weight: bold;
+    src: url('../assets/fonts/ptsans/PT_Sans-Web-BoldItalic.ttf') format('truetype');
+}
+
 
 /* render Arabic as rtl */
 [lang = "ar"],
@@ -176,7 +210,8 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "American Typewriter", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+    /*  note that only the first two are typewriter fonts, which might not be available on all systems   */
+    font-family: PTSans, "American Typewriter", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
     font-weight: 400;
     color: #113868;
 }
@@ -316,8 +351,9 @@ heads
 ******************/
 /* title and dividing slides */
 /* put h1 in the center of the slide */
-div.titleslide h1 {
-    margin-top: 4em;
+div.titleslide h1,
+#title-slide h1 {
+    margin-top: 2em;
 /*margin-bottom: auto;*/
 font-size: 2em;
 }
@@ -1148,16 +1184,6 @@ div.references {
 }
 div.references p {
     margin: 5px 0px;
-}
-
-/* alerts */
-
-div.alert {
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
-    margin-left: 2em;
-    border-left-width: 1em;
 }
 /*
  hide images for work around for save as bug
