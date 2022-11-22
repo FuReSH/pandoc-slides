@@ -322,33 +322,31 @@ div.titleslide h1 {
 /*margin-bottom: auto;*/
 font-size: 2em;
 }
-div.level1 h1 {
-    margin-top: 4em;
-    font-size: 2em;
-}
+
 h1,
 h2,
 h3,
 h4 {
     text-align: center;
 }
-.reveal h1, h1 {
+div.reveal h1, h1 {
     padding-bottom: 0.3em;
     font-size: 1.75em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
+    margin-top: 4em;
 }
-.reveal h2, h2 {
+div.reveal h2, h2 {
     padding-bottom: 0.3em;
     font-size: 1.5em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
-.reveal h3, h3 {
+div.reveal h3, h3 {
     font-size: 1.25em;
     line-height: 1.43;
 }
-.reveal h4, h4 {
+div.reveal h4, h4 {
     font-size: 1em;
 }
 /******************
@@ -528,6 +526,17 @@ div.column {
 }
 .columns-3 > .column {
     width: 32%;
+}
+.columns-3 > .narrow {
+    width: 23%;
+    position: relative;
+    float: left;
+}
+
+.columns-3 > .wide {
+    width: 50%;
+    position: relative;
+    float: left;
 }
 .columns-2 > .column,
 .columns > .column {
@@ -1052,6 +1061,19 @@ td:hover {
     border-width: 2px;
     border-style: solid;
 }
+table > caption {
+    /*position: relative;
+    float: right;*/
+    text-align: center;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+    /*top:2em;*/
+    /*max-width:15%;
+    min-width: 180px;*/
+    font-size: 0.6em;
+    font-weight: lighter;
+}
+
 /*
  setting class="outline on ol or ul makes it behave as an
  ouline list where blocklevel content in li elements is
