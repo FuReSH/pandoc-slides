@@ -219,7 +219,8 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+th {
     /*  note that only the first two are typewriter fonts, which might not be available on all systems   */
 /*    font-family: PTSans, "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;*/
     font-family: HeptaSlab, "American Typewriter", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
@@ -1077,6 +1078,11 @@ table {
     /*font-size: 0.8em;*/
     border-collapse: collapse;
 }
+th {
+    border-bottom-width: 2px;
+    border-bottom-style: double;
+    border-bottom-color: black;
+}
 td,
 th {
     padding: 0.2em
@@ -1195,6 +1201,14 @@ div.references {
 }
 div.references p {
     margin: 5px 0px;
+}
+/* alerts */
+div.alert {
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+    margin-left: 2em;
+    border-left-width: 1em;
 }
 /*
  hide images for work around for save as bug
