@@ -5,7 +5,7 @@ author:
     - Sophie Eckenstaler 
     - Till Grallert
 affiliation: Future e-Research Support in the Humanities, Humboldt-Universität zu Berlin
-date: 2022-10-19
+date: 2022-11-29
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
@@ -20,11 +20,14 @@ tags:
 # 1. To do
 
 - [ ] [Deutsche Label von Abbildungen](#abbildungen)
-- [ ] [Docker auf ARM Macs](#arm)
-	+ work-around: use the `ARM` branch which relies on another Pandoc image. DOES NOT include the `pandoc-crossref` filter.
+- [x] [Docker auf ARM Macs](#arm)
 	+ There is an issue in the [Pandoc repo on Github](https://github.com/pandoc/dockerfiles/issues/134).
+	+ work-arounds: 
+		1. use the `ARM` branch, which relies on another Pandoc image. DOES NOT include the `pandoc-crossref` filter.
+		2. use the `no-docker` branch, which requires a local Pandoc installation
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
+- [x] Die im CSS festgelegten Schriften sind nicht auf allen OS standardmäßig installiert. Hier braucht es ein Fallback oder einen Hinweis auf die Installation notwendiger Fonts
 
 # 2. Allgemeines
 
