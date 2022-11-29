@@ -10,7 +10,11 @@
       <meta name="author" content="$author-meta$" />
       $endfor$
       $if(date-meta)$
-      <meta name="date" content="$date-meta$" />
+      <meta class="current-date" name="date" content="$data-meta$" />
+      $else$
+      <script src="../furesh-templates/js/slides-furesh.js"
+        charset="utf-8" type="text/javascript"></script>
+      <meta name="date" onload="setCurrentDate(this)" content="" />
       $endif$
       $if(keywords)$
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
@@ -65,7 +69,7 @@
             </p>
             $endif$
             $if(date)$
-            <p class="date">$date$</p>
+            <p class="date" onload="setCurrentDate(this)"></script</p>
             $endif$
             <!-- <footer style="z-index: 100;">
                 <span style="" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
