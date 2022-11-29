@@ -10,9 +10,9 @@
       <meta name="author" content="$author-meta$" />
       $endfor$
       $if(date-meta)$
-      <meta name="date" content="$data-meta$" />
+      <meta name="date" content="$date-meta$" />
       $else$      
-      <meta class="current-date" name="date" />
+      <meta name="date" class="current-date" />
       $endif$
       $if(keywords)$
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
@@ -66,7 +66,11 @@
             $for(institute)$$institute$$sep$<br/>$endfor$
             </p>
             $endif$
+            $if(date)$
+            <p class="date">$date$</p>
+            $else$
             <p class="current-date"></p>
+            $endif$
             <!-- <footer style="z-index: 100;">
                 <span style="" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
             </footer> -->
@@ -84,12 +88,12 @@
         <footer>
             <div class="c_frame">
             $if(date)$
-                <span class="c_left current-date">$date$</span>
-                $if(author)$
-                <span class="c_left">|</span>
-                $endif$
+                <span class="c_left">$date$</span>
+            $else$
+                <span class="c_left current-date"></span>
             $endif$
             $if(author)$
+                <span class="c_left">|</span>
                 <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
             $endif$
             <!-- this should probably moved to the title slide only -->
@@ -103,6 +107,8 @@
                 for (element of collection) {
                     if (element.nodeName == "META" && !element.hasAttribute("content")) {
                         element.setAttribute("content", date);
+                    } else {
+                        element.innerText = date;
                     }
                 }                
             }
