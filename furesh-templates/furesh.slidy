@@ -11,6 +11,8 @@
       $endfor$
       $if(date-meta)$
       <meta name="date" content="$date-meta$" />
+      $else$      
+      <meta name="date" class="current-date" />
       $endif$
       $if(keywords)$
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
@@ -40,7 +42,7 @@
         <meta name="duration" content="$duration$" />
         $endif$
     </head>
-    <body>
+    <body onload="setCurrentDate()">
         $for(include-before)$
         $include-before$
         $endfor$
@@ -66,6 +68,8 @@
             $endif$
             $if(date)$
             <p class="date">$date$</p>
+            $else$
+            <p class="current-date"></p>
             $endif$
             <!-- <footer style="z-index: 100;">
                 <span style="" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
@@ -85,16 +89,29 @@
             <div class="c_frame">
             $if(date)$
                 <span class="c_left">$date$</span>
-                $if(author)$
-                <span class="c_left">|</span>
-                $endif$
+            $else$
+                <span class="c_left current-date"></span>
             $endif$
             $if(author)$
+                <span class="c_left">|</span>
                 <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
             $endif$
             <!-- this should probably moved to the title slide only -->
             <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
             </div>
         </footer>
+        <script>
+            function setCurrentDate() {
+                let date = new Date().toLocaleDateString();
+                let collection = document.getElementsByClassName("current-date");
+                for (element of collection) {
+                    if (element.nodeName == "META" && !element.hasAttribute("content")) {
+                        element.setAttribute("content", date);
+                    } else {
+                        element.innerText = date;
+                    }
+                }                
+            }
+        </script>
     </body>
 </html>
