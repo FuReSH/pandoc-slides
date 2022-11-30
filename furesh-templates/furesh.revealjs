@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html$if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
+<html $if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
@@ -43,7 +43,7 @@
     $header-includes$
     $endfor$
   </head>
-  <body>
+  <body onload="setCurrentDate()">
     $for(include-before)$
     $include-before$
     $endfor$
@@ -88,7 +88,9 @@
           </p>
           $endif$
           $if(date)$
-          <p class="date">$date$</p>
+            <p class="date">$date$</p>
+          $else$
+            <p class="current-date"></p>
           $endif$
           $if(url)$
           <p class="url"><a href="$url$">$url$</a></p>
@@ -358,11 +360,11 @@
         <div class="c_frame">
         $if(date)$
             <span class="c_left">$date$</span>
-            $if(author)$
-            <span class="c_left">|</span>
-            $endif$
+        $else$
+            <span class="c_left current-date"></span>
         $endif$
         $if(author)$
+            <span class="c_left">|</span>
             <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
         $endif$
         $if(homepage)$
@@ -372,5 +374,18 @@
         <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
         </div>
     </footer>
+    <script>
+            function setCurrentDate() {
+                let date = new Date().toLocaleDateString();
+                let collection = document.getElementsByClassName("current-date");
+                for (element of collection) {
+                    if (element.nodeName == "META" && !element.hasAttribute("content")) {
+                        element.setAttribute("content", date);
+                    } else {
+                        element.innerText = date;
+                    }
+                }
+            }
+        </script>
   </body>
   </html>
