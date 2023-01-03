@@ -5,7 +5,7 @@ author:
     - Sophie Eckenstaler 
     - Till Grallert
 affiliation: Future e-Research Support in the Humanities, Humboldt-Universität zu Berlin
-date: 2022-11-29
+date: 2023-01-03
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
@@ -26,7 +26,7 @@ tags:
 		1. use the `ARM` branch, which relies on another Pandoc image. DOES NOT include the `pandoc-crossref` filter.
 		2. use the `no-docker` branch, which requires a local Pandoc installation
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
-- [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) in Docker
+- [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) für die Unterstützung von Diagrammen mit [mermaid.js](https://mermaid.js.org) in Docker
 - [x] Die im CSS festgelegten Schriften sind nicht auf allen OS standardmäßig installiert. Hier braucht es ein Fallback oder einen Hinweis auf die Installation notwendiger Fonts
 
 # 2. Allgemeines

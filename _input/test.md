@@ -85,6 +85,15 @@ Ac maximus per arcu in facilisi laoreet ornare tempor posuere luctus at, nisl hi
 ::::
 :::
 
+## Diagramme
+
+Test für [mermaid.js](https://mermaid.js.org)
+
+```mermaid
+flowchart LR
+    id1[(Database)] --> id2[(Database)]
+```
+
 ## Citations
 
 Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DHCoursebook]
