@@ -91,7 +91,7 @@ Test für [mermaid.js](https://mermaid.js.org)
 
 ```mermaid
 flowchart LR
-    id1[(Database)] --> id2[(Database)]
+    id4(YAML) -- referencing --> id1[(Wikidata)] -- processing --> id2{front end}
 ```
 
 ## Citations
