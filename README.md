@@ -9,8 +9,8 @@ date: 2023-01-03
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
-	- ../../assets/bibliography/FuReSH.csl.json
-	- /BachCloud/HUBox/assets/bibliography/FuReSH.csl.json
+    - ../../assets/bibliography/FuReSH.csl.json
+    - /BachCloud/HUBox/assets/bibliography/FuReSH.csl.json
 markdown: pandoc
 lang: de
 tags:
@@ -21,10 +21,10 @@ tags:
 
 - [ ] [Deutsche Label von Abbildungen](#abbildungen)
 - [x] [Docker auf ARM Macs](#arm)
-	+ There is an issue in the [Pandoc repo on Github](https://github.com/pandoc/dockerfiles/issues/134).
-	+ work-arounds: 
-		1. use the `ARM` branch, which relies on another Pandoc image. DOES NOT include the `pandoc-crossref` filter.
-		2. use the `no-docker` branch, which requires a local Pandoc installation
+    + There is an issue in the [Pandoc repo on Github](https://github.com/pandoc/dockerfiles/issues/134).
+    + work-arounds: 
+        1. use the `ARM` branch, which relies on another Pandoc image. DOES NOT include the `pandoc-crossref` filter.
+        2. use the `no-docker` branch, which requires a local Pandoc installation
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) für die Unterstützung von Diagrammen mit [mermaid.js](https://mermaid.js.org) in Docker
 - [x] Die im CSS festgelegten Schriften sind nicht auf allen OS standardmäßig installiert. Hier braucht es ein Fallback oder einen Hinweis auf die Installation notwendiger Fonts
@@ -38,8 +38,8 @@ Die Ordnerstruktur ist wie folgt und darf **nicht geändert** werden, da die Bas
 - `_input/`: temporärer Ordner für Inputdateien. Diese müssen den Markdown-Konventionen entsprechen und mit der Dateiendung `.md` versehen sein
 - `_output/`: temporärer Ordner für den durch die Bashscripte erzeugten Output
 - `furesh-templates/`: Ordner für Formatvorlagen
-	+ `csl/`: Ordner für `CSL` Zitationsstile
-	+ `css/`: Ordner für `CSS` includes. Diese müssen `HTML` Snippets sein, also `CSS`, das von einem `<style type="text/css">` Tag umgeben ist.
+    + `csl/`: Ordner für `CSL` Zitationsstile
+    + `css/`: Ordner für `CSS` includes. Diese müssen `HTML` Snippets sein, also `CSS`, das von einem `<style type="text/css">` Tag umgeben ist.
 - `pandoc-templates/`: Ordner mit Kopien der Standardvorlagen für Pandoc
 
 ## Wichtig: relative Links im YAML
@@ -82,10 +82,10 @@ output_name="furesh.html"
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 # note that --template is called --reference-doc for pptx
 for file in $input_dir/*.md;  
-	do 
+    do 
       [[ "$file" =~ \/[a-z0-9]+ ]]
-		name="${BASH_REMATCH[0]}"
-	   docker run --rm \
+        name="${BASH_REMATCH[0]}"
+       docker run --rm \
        --volume "$(pwd):/data" \
        --user $(id -u):$(id -g) \
        pandoc/core:2.18 -f markdown -t $output_format -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
@@ -117,8 +117,8 @@ output_name=$template
 cd $input_dir && pwd
 # convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
 for file in *.md;  
-	do name=${file%.*}
-	    pandoc -f markdown -t pptx -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
+    do name=${file%.*}
+        pandoc -f markdown -t pptx -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --reference-doc $templates_dir/$template $file -o $output_dir/$name-$output_name;  
 done
 ```
 
@@ -224,34 +224,34 @@ Potentiel entstehen Fehler, wenn in den Formatvorlagen die einzelnen Folien nich
 
 - There must be at least 4 slides in the slide masters, named ppt/slideLayouts/slideLayout[1-4].xml
 - ppt/slideLayouts/slideLayout1.xml is a title slide, and must:
-	+ have a `p:ph` element with type="ctrTitle"
-	+ have a `p:ph` element with type="subTitle"
-	+ have a `p:ph` element with type="dt"
+    + have a `p:ph` element with type="ctrTitle"
+    + have a `p:ph` element with type="subTitle"
+    + have a `p:ph` element with type="dt"
 - ppt/slideLayouts/slideLayout2.xml is a title + content slide, and must:
-	- have a `p:ph` element with type="title"
-	- have a `p:ph` element without a type attribute
+    - have a `p:ph` element with type="title"
+    - have a `p:ph` element without a type attribute
 - ppt/slideLayouts/slideLayout3.xml is a section header slide, and must:
-	- have a `p:ph` element with either type="title" or type="ctrTitle"
+    - have a `p:ph` element with either type="title" or type="ctrTitle"
 - ppt/slideLayouts/slideLayout2.xml is a title + two-content slide, and must:
-	- have a `p:ph` element with type="title"
-	- have at least two `p:ph` elements without a type attribute
+    - have a `p:ph` element with type="title"
+    - have at least two `p:ph` elements without a type attribute
 
 ### Folienvorlagen
 
 - Title Slide
-	+ >This layout is used for the initial slide, which is generated and filled from the metadata fields date, author, and title, if they are present.
+    + >This layout is used for the initial slide, which is generated and filled from the metadata fields date, author, and title, if they are present.
 - Section Header
-	+ >This layout is used for what pandoc calls “title slides”, i.e. slides which start with a header which is above the slide level in the hierarchy.
+    + >This layout is used for what pandoc calls “title slides”, i.e. slides which start with a header which is above the slide level in the hierarchy.
 - Two Content
-	+ >This layout is used for two-column slides, i.e. slides containing a div with class columns which contains at least two divs with class column.
+    + >This layout is used for two-column slides, i.e. slides containing a div with class columns which contains at least two divs with class column.
 - Comparison
-	- >This layout is used instead of “Two Content” for any two-column slides in which at least one column contains text followed by non-text (e.g. an image or a table).
+    - >This layout is used instead of “Two Content” for any two-column slides in which at least one column contains text followed by non-text (e.g. an image or a table).
 - Content with Caption
-	+ >This layout is used for any non-two-column slides which contain text followed by non-text (e.g. an image or a table).
+    + >This layout is used for any non-two-column slides which contain text followed by non-text (e.g. an image or a table).
 - Blank
-	+ >This layout is used for any slides which only contain blank content, e.g. a slide containing only speaker notes, or a slide containing only a non-breaking space.
+    + >This layout is used for any slides which only contain blank content, e.g. a slide containing only speaker notes, or a slide containing only a non-breaking space.
 - Title and Content
-	+ >This layout is used for all slides which do not match the criteria for another layout.
+    + >This layout is used for all slides which do not match the criteria for another layout.
 
 # Sample show
 
