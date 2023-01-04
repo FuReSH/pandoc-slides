@@ -9,8 +9,8 @@ date: 2023-01-03
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
-	../../assets/bibliography/FuReSH.csl.json
-	/BachCloud/HUBox/assets/bibliography/FuReSH.csl.json
+	- ../../assets/bibliography/FuReSH.csl.json
+	- /BachCloud/HUBox/assets/bibliography/FuReSH.csl.json
 markdown: pandoc
 lang: de
 tags:
