@@ -91,8 +91,19 @@ Ac maximus per arcu in facilisi laoreet ornare tempor posuere luctus at, nisl hi
 Test für [mermaid.js](https://mermaid.js.org)
 
 ```mermaid
+---
+title: our backend
+---
+
 flowchart LR
-    id4(YAML) -- referencing --> id1[(Wikidata)] -- processing --> id2{front end}
+    id4((YAML)) -- referencing --> wk[(Wikidata)]
+    wk[(Wikidata)] -- referencing --> source1[(TaPOR)]
+    wk[(Wikidata)] -- referencing --> source2[(CLARIAH)]
+    id4(YAML) -- storing --> id5[(GitHub)]
+    zot[(Zotero)] -- referencing --> id4(YAML)
+    wk[(Wikidata)] --> ga[Github Action]
+    zot[(Zotero)] --> ga[Github Action]
+    ga[Github Action] --> result{YAML}
 ```
 
 ## Citations
