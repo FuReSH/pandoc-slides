@@ -27,7 +27,6 @@ tags:
         2. use the `no-docker` branch, which requires a local Pandoc installation
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) für die Unterstützung von Diagrammen mit [mermaid.js](https://mermaid.js.org) in Docker
-- [x] Die im CSS festgelegten Schriften sind nicht auf allen OS standardmäßig installiert. Hier braucht es ein Fallback oder einen Hinweis auf die Installation notwendiger Fonts
 
 # 2. Allgemeines
 
