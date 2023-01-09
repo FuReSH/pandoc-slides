@@ -9,6 +9,7 @@ date: 2022-04-27
 status: draft
 licence: https://creativecommons.org/licenses/by/4.0/
 bibliography: https://furesh.github.io/slides/assets/bibliography/FuReSH.csl.json
+link-citation: true
 markdown: pandoc
 lang: de
 tags:
