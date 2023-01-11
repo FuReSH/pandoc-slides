@@ -13,7 +13,6 @@
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
     $endif$
     $if(license)$
-      <!-- for some reason this does not work -->
       <meta name="license" content="$license$" />
     $endif$
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
@@ -374,8 +373,11 @@
             <span class="c_left">|</span>
             <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
         $endif$
-        $if(homepage)$
-        <span class="c_center"><a href="$homepage$">$homepage$</a></span>
+        $if(url)$
+        <span class="c_center">
+          <a href="$url$">$url$</a>
+          <span>$license$</span>
+        </span>
         $endif$
         <!-- this should probably moved to the title slide only -->
         <span id="institution" class="c_right"><a href="https://www.ub.hu-berlin.de">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</a></span>
