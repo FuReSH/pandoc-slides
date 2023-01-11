@@ -49,8 +49,8 @@
     $endfor$
     <!-- FuReSH header -->
     <header>
-        <!-- <img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png"> -->
-        <img class="c_right c_logo" src="https://furesh.github.io/slides/assets/images/hu_siegel_rgb.png">
+        <!-- <a href="https://makerspace.hypotheses.org"><img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png"></a> -->
+        <a href="https://hu-berlin.de"><img class="c_right c_logo" src="https://furesh.github.io/slides/assets/images/hu_siegel_rgb.png"></a>
     </header>
     <div class="reveal">
       <div class="slides">
@@ -176,7 +176,8 @@
         disableLayout: $disableLayout$,
 
         // Vertical centering of slides
-        center: $center$,
+        // center: $center$,
+        center: false,
 
         // Enables touch navigation on devices with touch input
         touch: $touch$,
@@ -377,7 +378,7 @@
         <span class="c_center"><a href="$homepage$">$homepage$</a></span>
         $endif$
         <!-- this should probably moved to the title slide only -->
-        <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
+        <span id="institution" class="c_right"><a href="https://www.ub.hu-berlin.de">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</a></span>
         </div>
     </footer>
     <script>

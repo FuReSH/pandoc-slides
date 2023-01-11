@@ -477,40 +477,6 @@ writing direction
 /*****************
 code
 ******************/
-/*pre {
- font-size: 80%;
- font-weight: normal;
- line-height: 100%;
- padding-top: 0.2em;
- padding-bottom: 0.2em;
- padding-left: 1em;
- padding-right: 1em;
- border-style: solid;
- border-left-width: 1em;
- border-top-width: thin;
- border-right-width: thin;
- border-bottom-width: thin;
- border-color: #95ABD0;
- color: #00428C;
- background-color: #E4E5E7;
-}*/
-/*code, kbd, pre, samp {
-  font-family: monospace, monospace;
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  margin: 0;
-  font-size: 80%;
-  line-height: 100%;
-  background-color: rgba(0,0,0,0.04);
-  border-radius: 3px;
-}*/
-/*pre>code {
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: 0;
-}*/
 div.sourceCode {
     margin: 10px 5px;
 }
@@ -531,6 +497,13 @@ pre {
     border-radius: 5px;
     /*box-shadow: 2px 2px 5px #000;*/
     border: #95ABD0 solid 1px;
+}
+
+pre.mermaid {
+    border: none;
+    background-color: white;
+    margin-left: 0;
+    margin-right: 0;
 }
 pre > code.sourceCode {
     white-space: pre-wrap; /* pre causes long lines with horizontal scrolling, which we don't want on slides*/

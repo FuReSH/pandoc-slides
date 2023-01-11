@@ -10,6 +10,7 @@ status: draft
 licence: https://creativecommons.org/licenses/by/4.0/
 bibliography: https://furesh.github.io/slides/assets/bibliography/FuReSH.csl.json
 link-citation: true
+reference-section-title: Literatur
 markdown: pandoc
 lang: de
 tags:
@@ -108,6 +109,10 @@ flowchart LR
 
 ## Citations
 
+
 Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DHCoursebook]
 
-## Literatur {#refs}
+::: {#refs}
+
+:::
+
