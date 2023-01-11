@@ -27,6 +27,7 @@ tags:
         2. use the `no-docker` branch, which requires a local Pandoc installation
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) für die Unterstützung von Diagrammen mit [mermaid.js](https://mermaid.js.org) in Docker
+    + Ohne diese Integration bedarf es nur einer minimalen manuellen Bearbeitung des Outputs.
 
 # 2. Allgemeines
 
@@ -51,45 +52,11 @@ Nach dem Download dieses GitHub Repositoriums, müssen die Shell-Skripte ausfüh
 
 ## mit Docker
 
-Die präferierte und aktuell implementierte Option ist es, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. 
+Die präferierte und aktuell implementierte Option ist es, die Skripte in Docker laufen zu lassen, damit mögliche Abhängigkeiten von Docker gemanagt werden. Sämtliche Skripte in der `main` Branch benutzen Docker und können als Beispielcode herangezogen werden.
 
 ### ARM Macs {#arm}
 
 Es gibt allerdings potentiell Probleme mit neuen ARM Macs, da nicht alle Docker Images für diese Architektur vorliegen. In dem Fall muss die `--platform` Flag gesetzt werden: `--platform linux/amd64` oder über `platform: linux/amd64` in einem Docker `compose.yaml`. Da das aktuelle `pandoc/core:latest` image trotzdem ohne Fehlermeldung keinerlei Output produziert, sind wir für ARM Geräte auf eine eigene Branch (`ARM`) umgestiegen. Diese funktioniert, allerdings noch ohne `pandoc-crossref`.
-
-### Beispiel
-
-```bash
-#!/bin/bash
-# change into the script directory
-current_dir=$(dirname "${BASH_SOURCE[0]}")
-cd $current_dir && pwd
-# path to input directory
-input_dir="./_input"
-#  path to output directory
-output_dir="./_output"
-#  path to csl
-csl_dir="./furesh-templates/csl"
-css_dir="./furesh-templates/css"
-csl="$csl_dir/chicago-author-date_slides.csl"
-# path to template directory
-templates_dir="./furesh-templates"
-# output variables
-output_format="slidy"
-template="furesh.slidy"
-output_name="furesh.html"
-# convert all markdown files in the input directory using the defined template and csl styles and write the result to the output directory
-# note that --template is called --reference-doc for pptx
-for file in $input_dir/*.md;  
-    do 
-      [[ "$file" =~ \/[a-z0-9]+ ]]
-        name="${BASH_REMATCH[0]}"
-       docker run --rm \
-       --volume "$(pwd):/data" \
-       --user $(id -u):$(id -g) \
-       pandoc/core:2.18 -f markdown -t $output_format -M "crossrefYaml=./pandoc-crossref-de.yml" --citeproc --csl $csl --include-in-header $css_dir/slidy-furesh.html --template $templates_dir/$template $file -o $output_dir/$name-$output_name;
-done
-```
 
 ## ohne Docker
 
@@ -135,11 +102,19 @@ Abbildungen werden mit der Standardsyntax (`![alt text / caption](image-url.png)
 
 **Bug:** Interpretiert Markdown Tag für Überschriften in `pandoc-crossref-de.yml` nicht.
 
-## Graphiken mit Miroboards
+### Copyright
+
+Damit wir die Informationen zu Quellen und Rechten von Bildern im Ordner `assets/` nicht verlieren, können diese mit dem [ExifTool](https://exiftool.org/) in die Metadaten der Bilddateien geschrieben werden. Ein einfaches Kommando dazu ist
+
+```bash
+exiftool -exif:copyright="FuReSH, CC BY 4.0" -n path-to-image.jpg
+```
+
+### Graphiken mit Miroboards
 
 Um das Seitenverhältnis des Viewports auf 16:9 Bildschirmen abzubilden, sollten "Frames" mit dem Seitenverhältnis 16:9 als Grundlage gewählt werden
 
-## Notizen für die Präsentierende
+## Notizen für die Präsentierenden
 
 Einige Ausgabeformate unterstützen Notizen für die Präsentierenden: `reveal.js`, `PowerPoint (.pptx)`. Das Format sind `div`s der Klasse "notes":
 
