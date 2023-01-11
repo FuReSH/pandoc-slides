@@ -498,6 +498,12 @@ div.figure {
     padding: 0;
     /*height: inherit;*/
 }
+figure {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
 div.figure p.caption,
 figcaption {
     position: relative;
@@ -568,11 +574,15 @@ div.columns {
     /*flex: none;*/
 }
 div.column {
-    display: inline-block;
+/*    display: inline-block;*/
     flex: none;
+    display: block;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .columns-3 > .column {
-    width: 32%;
+    width: 31%;
 }
 .columns-3 > .narrow {
     width: 23%;
@@ -586,8 +596,9 @@ div.column {
     float: left;
 }
 .columns-2 > .column,
-.columns > .column {
-    width: 50%;
+.columns > .column,
+.c_width-50  {
+    width: 47%;
 }
 .c_width-60,
 .column-60,
@@ -597,7 +608,6 @@ div.column {
     float: left;
 }
 .c_width-50 {
-    width: 50%;
     position: relative;
     float: left;
 }
@@ -864,6 +874,12 @@ pre {
     border-radius: 5px;
     /*box-shadow: 2px 2px 5px #000;*/
     border: #95ABD0 solid 1px;
+}
+pre.mermaid {
+    border: none;
+    background-color: white;
+    margin-left: 0;
+    margin-right: 0;
 }
 pre > code.sourceCode {
     white-space: pre-wrap; /* pre causes long lines with horizontal scrolling, which we don't want on slides*/
