@@ -5,7 +5,7 @@ author:
     - Sophie Eckenstaler 
     - Till Grallert
 affiliation: Future e-Research Support in the Humanities, Humboldt-Universität zu Berlin
-date: 2023-01-03
+date: 2023-01-11
 status: draft
 license: https://creativecommons.org/licenses/by/4.0/
 bibliography: 
@@ -28,6 +28,7 @@ tags:
 - [x] Integration von [`pandoc-crossref`](https://github.com/lierdakil/pandoc-crossref) in Docker
 - [ ] Integration von [`mermaid-filter`](https://github.com/raghur/mermaid-filter) für die Unterstützung von Diagrammen mit [mermaid.js](https://mermaid.js.org) in Docker
     + Ohne diese Integration bedarf es nur einer minimalen manuellen Bearbeitung des Outputs.
+- [ ] Bashskript um zu prüfen ob Bilder in einem Ordner keine Copyright-Informationen haben und dieses dann auf einen voreingestellten Wert festlegen.
 
 # 2. Allgemeines
 
