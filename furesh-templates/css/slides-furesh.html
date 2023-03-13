@@ -9,6 +9,49 @@
    http://www.w3.org/Consortium/Legal/copyright-software
 */
 
+@font-face {
+    font-family: AmiriWeb;
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://furesh.github.io/slides/fonts/amiri/amiri-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: PTSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://furesh.github.io/slides/fonts/ptsans/PT_Sans-Web-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: PTSans;
+    font-style: italic;
+    font-weight: 400;
+    src: url('https://furesh.github.io/slides/fonts/ptsans/PT_Sans-Web-Italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: PTSans;
+    font-style: regular;
+    font-weight: bold;
+    src: url('https://furesh.github.io/slides/fonts/ptsans/PT_Sans-Web-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: PTSans;
+    font-style: italic;
+    font-weight: bold;
+    src: url('https://furesh.github.io/slides/fonts/ptsans/PT_Sans-Web-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+    font-family: HeptaSlab;
+    src: url('https://furesh.github.io/slides/fonts/heptaslab/HeptaSlab-VF.ttf') format('truetype');
+}
+@font-face {
+    font-family: linowrite;
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://furesh.github.io/slides/fonts/linowrite/linowrite.ttf') format('truetype');
+}
+
+
 /* render Arabic as rtl */
 [lang = "ar"],
 [lang = "ota"],
@@ -176,8 +219,11 @@ h1,
 h2,
 h3,
 h4,
-h5 {
-    font-family: "American Typewriter", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+h5,
+th {
+    /*  note that only the first two are typewriter fonts, which might not be available on all systems   */
+/*    font-family: PTSans, "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;*/
+    font-family: HeptaSlab, "American Typewriter", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
     font-weight: 400;
     color: #113868;
 }
@@ -317,38 +363,37 @@ heads
 ******************/
 /* title and dividing slides */
 /* put h1 in the center of the slide */
-div.titleslide h1 {
-    margin-top: 4em;
+div.titleslide h1,
+#title-slide h1 {
+    margin-top: 2em;
 /*margin-bottom: auto;*/
 font-size: 2em;
 }
-div.level1 h1 {
-    margin-top: 4em;
-    font-size: 2em;
-}
+
 h1,
 h2,
 h3,
 h4 {
     text-align: center;
 }
-.reveal h1, h1 {
+div.reveal h1, h1 {
     padding-bottom: 0.3em;
     font-size: 1.75em;
     line-height: 1.2;
     border-bottom: 1px solid #eee;
+    margin-top: 4em;
 }
-.reveal h2, h2 {
+div.reveal h2, h2 {
     padding-bottom: 0.3em;
     font-size: 1.5em;
     line-height: 1.225;
     border-bottom: 1px solid #eee;
 }
-.reveal h3, h3 {
+div.reveal h3, h3 {
     font-size: 1.25em;
     line-height: 1.43;
 }
-.reveal h4, h4 {
+div.reveal h4, h4 {
     font-size: 1em;
 }
 /******************
@@ -453,6 +498,14 @@ div.figure {
     padding: 0;
     /*height: inherit;*/
 }
+figure {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    /*margin-inline-start: 40px;
+    margin-inline-end: 40px;*/
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
 div.figure p.caption,
 figcaption {
     position: relative;
@@ -489,8 +542,8 @@ img.c_logo {
     margin-right: 3em;
     margin-top: 1em;
     margin-bottom: 1em;
-    max-width: 6em;
-    max-height: 4em;
+/*    max-width: 6em !important;*/
+    max-height: 4em !important;
 }
 /*img {
   max-height: 700px;
@@ -517,21 +570,42 @@ iframe {
 /*****************
 columns
 ******************/
-div.columns {
+div.columns,
+div.columns-2,
+div.columns-3 {
     /* newer? versions of reveal use display: flex */
     display: block;
     /*flex: none;*/
 }
+div.columns-3 {
+    clear: both;
+}
 div.column {
-    display: inline-block;
+/*    display: inline-block;*/
     flex: none;
+    display: block;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .columns-3 > .column {
-    width: 32%;
+    width: 31%;
+}
+.columns-3 > .narrow {
+    width: 23%;
+    position: relative;
+    float: left;
+}
+
+.columns-3 > .wide {
+    width: 50%;
+    position: relative;
+    float: left;
 }
 .columns-2 > .column,
-.columns > .column {
-    width: 50%;
+.columns > .column,
+.c_width-50  {
+    width: 48%;
 }
 .c_width-60,
 .column-60,
@@ -541,7 +615,6 @@ div.column {
     float: left;
 }
 .c_width-50 {
-    width: 50%;
     position: relative;
     float: left;
 }
@@ -809,6 +882,12 @@ pre {
     /*box-shadow: 2px 2px 5px #000;*/
     border: #95ABD0 solid 1px;
 }
+pre.mermaid {
+    border: none;
+    background-color: white;
+    margin-left: 0;
+    margin-right: 0;
+}
 pre > code.sourceCode {
     white-space: pre-wrap; /* pre causes long lines with horizontal scrolling, which we don't want on slides*/
 }
@@ -851,7 +930,8 @@ cite {
     font-size: 0.8em;
     font-style: normal;
     text-align: right;
-    float: right;
+/*    the float attribute destroys the multi-column layout*/
+/*    float: right;*/
     padding-bottom: 1em;
 }
 p.copyright {
@@ -870,6 +950,7 @@ lists
 ul,
 ol {
     display: block;
+    clear: both;
     font-style: normal;
     margin-top: 0.1em;
     margin-bottom: 0.5em;
@@ -1022,6 +1103,11 @@ table {
     /*font-size: 0.8em;*/
     border-collapse: collapse;
 }
+th {
+    border-bottom-width: 2px;
+    border-bottom-style: double;
+    border-bottom-color: black;
+}
 td,
 th {
     padding: 0.2em
@@ -1052,6 +1138,19 @@ td:hover {
     border-width: 2px;
     border-style: solid;
 }
+table > caption {
+    /*position: relative;
+    float: right;*/
+    text-align: center;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
+    /*top:2em;*/
+    /*max-width:15%;
+    min-width: 180px;*/
+    font-size: 0.6em;
+    font-weight: lighter;
+}
+
 /*
  setting class="outline on ol or ul makes it behave as an
  ouline list where blocklevel content in li elements is
@@ -1127,6 +1226,14 @@ div.references {
 }
 div.references p {
     margin: 5px 0px;
+}
+/* alerts */
+div.alert {
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+    margin-left: 2em;
+    border-left-width: 1em;
 }
 /*
  hide images for work around for save as bug

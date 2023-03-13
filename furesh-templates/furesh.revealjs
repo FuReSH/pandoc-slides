@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html$if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
+<html $if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
@@ -13,7 +13,6 @@
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
     $endif$
     $if(license)$
-      <!-- for some reason this does not work -->
       <meta name="license" content="$license$" />
     $endif$
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
@@ -43,14 +42,14 @@
     $header-includes$
     $endfor$
   </head>
-  <body>
+  <body onload="setCurrentDate()">
     $for(include-before)$
     $include-before$
     $endfor$
     <!-- FuReSH header -->
     <header>
-        <!-- <img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png"> -->
-        <img class="c_right c_logo" src="https://furesh.github.io/slides/assets/images/hu_siegel_rgb.png">
+        <!-- <a href="https://makerspace.hypotheses.org"><img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png"></a> -->
+        <a href="https://hu-berlin.de"><img class="c_right c_logo" src="https://furesh.github.io/slides/assets/images/hu_siegel_rgb.png"></a>
     </header>
     <div class="reveal">
       <div class="slides">
@@ -88,7 +87,9 @@
           </p>
           $endif$
           $if(date)$
-          <p class="date">$date$</p>
+            <p class="date">$date$</p>
+          $else$
+            <p class="current-date"></p>
           $endif$
           $if(url)$
           <p class="url"><a href="$url$">$url$</a></p>
@@ -174,7 +175,8 @@
         disableLayout: $disableLayout$,
 
         // Vertical centering of slides
-        center: $center$,
+        // center: $center$,
+        center: false,
 
         // Enables touch navigation on devices with touch input
         touch: $touch$,
@@ -351,6 +353,12 @@
         ]
       });
     </script>
+    <!-- support for mermaid.js -->
+    <!-- <script src="https://unpkg.com/mermaid@8.8.4/dist/mermaid.min.js"></script> -->
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
     $for(include-after)$
     $include-after$
     $endfor$
@@ -358,19 +366,35 @@
         <div class="c_frame">
         $if(date)$
             <span class="c_left">$date$</span>
-            $if(author)$
-            <span class="c_left">|</span>
-            $endif$
+        $else$
+            <span class="c_left current-date"></span>
         $endif$
         $if(author)$
+            <span class="c_left">|</span>
             <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
         $endif$
-        $if(homepage)$
-        <span class="c_center"><a href="$homepage$">$homepage$</a></span>
+        $if(url)$
+        <span class="c_center">
+          <a href="$url$">$url$</a>
+          <span>$license$</span>
+        </span>
         $endif$
         <!-- this should probably moved to the title slide only -->
-        <span id="institution" class="c_right">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</span>
+        <span id="institution" class="c_right"><a href="https://www.ub.hu-berlin.de">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</a></span>
         </div>
     </footer>
+    <script>
+            function setCurrentDate() {
+                let date = new Date().toLocaleDateString();
+                let collection = document.getElementsByClassName("current-date");
+                for (element of collection) {
+                    if (element.nodeName == "META" && !element.hasAttribute("content")) {
+                        element.setAttribute("content", date);
+                    } else {
+                        element.innerText = date;
+                    }
+                }
+            }
+        </script>
   </body>
   </html>

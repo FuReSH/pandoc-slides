@@ -9,6 +9,8 @@ date: 2022-04-27
 status: draft
 licence: https://creativecommons.org/licenses/by/4.0/
 bibliography: https://furesh.github.io/slides/assets/bibliography/FuReSH.csl.json
+link-citation: true
+reference-section-title: Literatur
 markdown: pandoc
 lang: de
 tags:
@@ -31,6 +33,7 @@ Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende geset
 :::: column
 
 ![black box](https://furesh.github.io/slides/assets/images/blackbox/rId22.png){#fig:black-box}
+
 ::::
 :::: column
 
@@ -60,8 +63,8 @@ Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende geset
 
 ## Multi-column layout
 
-:::columns
-::::column
+::: columns-3
+:::: column
 
 ### List
 
@@ -69,17 +72,47 @@ Zur Nummerierung von Abbildungen wird einfach `{#fig:your-label}` ans Ende geset
 - Drink coffee
 
 ::::
-::::column
+:::: column
 
 ### Lorem ipsum
 
-Lorem ipsum dolor sit amet consectetur adipiscing elit euismod urna id ad vehicula ultrices, consequat dis ornare eu dapibus per pretium leo varius penatibus nulla magnis quisque, blandit interdum odio sodales senectus nascetur lacus eleifend sociosqu arcu molestie tempus. Fames maecenas hac venenatis iaculis metus consectetur tempor, sociosqu viverra posuere laoreet penatibus himenaeos congue habitant, varius justo sapien dis ultrices sociis. 
+Massa vivamus bibendum nisl nec pellentesque quis tortor molestie congue aliquam mattis pretium, aptent scelerisque montes habitant ligula maecenas primis dui sollicitudin morbi tempor.
+::::
+:::: column
+
+### Lorem ipsum
+
+Ac maximus per arcu in facilisi laoreet ornare tempor posuere luctus at, nisl himenaeos lacus sed risus inceptos donec dignissim vel.
 
 ::::
 :::
 
+## Diagramme
+
+Test für [mermaid.js](https://mermaid.js.org)
+
+```mermaid
+---
+title: our backend
+---
+
+flowchart LR
+    id4((YAML)) -- referencing --> wk[(Wikidata)]
+    wk[(Wikidata)] -- referencing --> source1[(TaPOR)]
+    wk[(Wikidata)] -- referencing --> source2[(CLARIAH)]
+    id4(YAML) -- storing --> id5[(GitHub)]
+    zot[(Zotero)] -- referencing --> id4(YAML)
+    wk[(Wikidata)] --> ga[Github Action]
+    zot[(Zotero)] --> ga[Github Action]
+    ga[Github Action] --> result{YAML}
+```
+
 ## Citations
+
 
 Literaturangaben können mit Pandoc und Citeproc ganz simpel als `[@citekey]` gemacht werden. Die Bibliographie, am besten als `CSL JSON`, muss im YAML mit `bibliography: path/to/bibliography.csl.json` verlinkt werden. Beispielzitation [@Drucker2021DHCoursebook]
 
-## Literatur {#refs}
+::: {#refs}
+
+:::
+
