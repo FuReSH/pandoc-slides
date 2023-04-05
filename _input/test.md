@@ -12,6 +12,7 @@ bibliography: https://furesh.github.io/slides/assets/bibliography/FuReSH.csl.jso
 link-citation: true
 reference-section-title: Literatur
 markdown: pandoc
+revealjs-url: https://furesh.github.io/slides/revealjs
 lang: de
 tags:
     - FuReSH
