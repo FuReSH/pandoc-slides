@@ -24,8 +24,7 @@ for file in $input_dir/*.md;
       [[ "$file" =~ \/[a-z0-9]+ ]]
 		name="${BASH_REMATCH[0]}"
 	   podman run --rm \
-       --volume "$(pwd):/data:z" \
-       --user $(id -u):$(id -g) \
+       --volume "$(pwd):/data" \
        docker.io/pandoc/$pandoc_image -f markdown -t $output_format \
        --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
        --citeproc --csl $csl \
