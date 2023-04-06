@@ -498,6 +498,14 @@ div.figure {
     padding: 0;
     /*height: inherit;*/
 }
+figure {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    /*margin-inline-start: 40px;
+    margin-inline-end: 40px;*/
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
 div.figure p.caption,
 figcaption {
     position: relative;
@@ -534,8 +542,8 @@ img.c_logo {
     margin-right: 3em;
     margin-top: 1em;
     margin-bottom: 1em;
-    max-width: 6em;
-    max-height: 4em;
+/*    max-width: 6em !important;*/
+    max-height: 4em !important;
 }
 /*img {
   max-height: 700px;
@@ -562,17 +570,26 @@ iframe {
 /*****************
 columns
 ******************/
-div.columns {
+div.columns,
+div.columns-2,
+div.columns-3 {
     /* newer? versions of reveal use display: flex */
     display: block;
     /*flex: none;*/
 }
+div.columns-3 {
+    clear: both;
+}
 div.column {
-    display: inline-block;
+/*    display: inline-block;*/
     flex: none;
+    display: block;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .columns-3 > .column {
-    width: 32%;
+    width: 31%;
 }
 .columns-3 > .narrow {
     width: 23%;
@@ -586,8 +603,9 @@ div.column {
     float: left;
 }
 .columns-2 > .column,
-.columns > .column {
-    width: 50%;
+.columns > .column,
+.c_width-50  {
+    width: 48%;
 }
 .c_width-60,
 .column-60,
@@ -597,7 +615,6 @@ div.column {
     float: left;
 }
 .c_width-50 {
-    width: 50%;
     position: relative;
     float: left;
 }
@@ -865,6 +882,12 @@ pre {
     /*box-shadow: 2px 2px 5px #000;*/
     border: #95ABD0 solid 1px;
 }
+pre.mermaid {
+    border: none;
+    background-color: white;
+    margin-left: 0;
+    margin-right: 0;
+}
 pre > code.sourceCode {
     white-space: pre-wrap; /* pre causes long lines with horizontal scrolling, which we don't want on slides*/
 }
@@ -907,7 +930,8 @@ cite {
     font-size: 0.8em;
     font-style: normal;
     text-align: right;
-    float: right;
+/*    the float attribute destroys the multi-column layout*/
+/*    float: right;*/
     padding-bottom: 1em;
 }
 p.copyright {
@@ -926,6 +950,7 @@ lists
 ul,
 ol {
     display: block;
+    clear: both;
     font-style: normal;
     margin-top: 0.1em;
     margin-bottom: 0.5em;

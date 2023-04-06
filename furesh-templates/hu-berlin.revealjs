@@ -46,9 +46,8 @@
     $for(include-before)$
     $include-before$
     $endfor$
-    <!-- FuReSH header -->
+    <!-- HU Berlin header -->
     <header>
-        <!-- <a href="https://makerspace.hypotheses.org"><img class="c_left c_logo" src="https://furesh.github.io/slides/assets/images/logo_furesh-yellow.png"></a> -->
         <a href="https://hu-berlin.de"><img class="c_right c_logo" src="https://furesh.github.io/slides/assets/images/hu_siegel_rgb.png"></a>
     </header>
     <div class="reveal">
@@ -100,7 +99,7 @@
         $endif$
         $if(toc)$
         <section id="$idprefix$TOC">
-          <nav role="doc-toc"> 
+          <nav role="doc-toc">
             $if(toc-title)$
             <h2 id="$idprefix$toc-title">$toc-title$</h2>
             $endif$
@@ -380,7 +379,7 @@
         </span>
         $endif$
         <!-- this should probably moved to the title slide only -->
-        <span id="institution" class="c_right"><a href="https://www.ub.hu-berlin.de">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</a></span>
+        <span id="institution" class="c_right"><a href="https://www.hu-berlin.de">HUMBOLDT-UNIVERSITÄT ZU BERLIN</a></span>
         </div>
     </footer>
     <script>
