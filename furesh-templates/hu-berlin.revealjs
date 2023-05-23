@@ -222,7 +222,11 @@
         // Number of milliseconds between automatically proceeding to the
         // next slide, disabled when set to 0, this value can be overwritten
         // by using a data-autoslide attribute on your slides
-        autoSlide: $autoSlide$,
+        $if(data-autoslide)$
+        autoSlide: $data-autoslide$,
+        $else$
+        autoSlide: 0,
+        $endif$
 
         // Stop auto-sliding after user input
         autoSlideStoppable: $autoSlideStoppable$,
@@ -300,29 +304,31 @@
         $if(width)$
         width: $width$,
         $else$
-        width: 1000,
+        width: 1200,
         $endif$
         $if(height)$
         height: $height$,
         $else$
-        height: 800,
+        height: 1000,
         $endif$
-        $if(margin)$
 
         // Factor of the display size that should remain empty around the content
+        $if(margin)$
         margin: $margin$,
+        $else$
+        margin: 0,
         $endif$
-        $if(minScale)$
 
         // Bounds for smallest/largest possible scale to apply to content
+        $if(minScale)$
         minScale: $minScale$,
         $endif$
-        $if(maxScale)$
 
+        $if(maxScale)$
         maxScale: $maxScale$,
         $endif$
-        $if(mathjax)$
 
+        $if(mathjax)$
         math: {
           mathjax: '$mathjaxurl$',
           config: 'TeX-AMS_HTML-full',
