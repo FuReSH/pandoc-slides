@@ -25,6 +25,7 @@ for file in $input_dir/*.md;
 		name="${BASH_REMATCH[0]}"
 		podman run --rm \
        	--volume "$(pwd):/data" \
+		--userns keep-id --user $(id -u):$(id -g) \
        	pandoc/$pandoc_image -s -f markdown -t $output_format \
        	--filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
        	--citeproc --csl $csl \

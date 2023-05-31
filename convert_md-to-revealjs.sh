@@ -1,6 +1,5 @@
 #!/bin/bash
 # set platform for the Docker image
-platform="linux/amd64" # for Apple silicon this must currently be set to "linux/amd64" and will run the pandoc image through the Rosetta2 emulator
 pandoc_image="core:latest" # for Apple silicon this must be set to "core:edge"
 # change into the script directory
 current_dir=$(dirname "${BASH_SOURCE[0]}")
@@ -27,7 +26,7 @@ for file in $input_dir/*.md;
 		name="${BASH_REMATCH[0]}"
 	   podman run --rm \
        --volume "$(pwd):/data" \
-       --platform $platform \
+       --userns keep-id --user $(id -u):$(id -g) \
        pandoc/$pandoc_image -s -f markdown -t $output_format \
        --filter=pandoc-crossref -M "crossrefYaml=./pandoc-crossref-de.yml" \
        --citeproc --csl $csl \
