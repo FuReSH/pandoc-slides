@@ -1130,8 +1130,9 @@ tr:hover td {
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
-td:hover {
+td:hover, td:hover * {
     background-color: #F46A00;
+    color: black;
 }
 .focus {
     border-color: red;
@@ -1234,6 +1235,12 @@ div.alert {
     border-color: red;
     margin-left: 2em;
     border-left-width: 1em;
+}
+.green {
+    color: green;
+}
+.red {
+    color: red;
 }
 /*
  hide images for work around for save as bug
