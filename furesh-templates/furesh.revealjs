@@ -373,12 +373,17 @@
             <span class="c_left">|</span>
             <span class="c_left">$for(author)$$author$$sep$, $endfor$</span>
         $endif$
-        $if(url)$
+
         <span class="c_center">
+          $if(DOI)$
+          <a href="https://doi.org/$DOI$">$DOI$</a>
+          <span>$license$</span>
+          $elseif(url)$
           <a href="$url$">$url$</a>
           <span>$license$</span>
+          $endif$
         </span>
-        $endif$
+
         <!-- this should probably moved to the title slide only -->
         <span id="institution" class="c_right"><a href="https://www.ub.hu-berlin.de">UNIVERSITÄTSBIBLIOTHEK DER HUMBOLDT-UNIVERSITÄT ZU BERLIN</a></span>
         </div>
