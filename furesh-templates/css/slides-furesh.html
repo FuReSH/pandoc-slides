@@ -249,6 +249,9 @@ strong {
 table {
     font-size: 0.8em;
 }
+.small-font {
+    font-size: 70%;
+}
 /******************
 set colours
 *******************/
@@ -624,9 +627,6 @@ div.column {
     width: 31%;
     position: relative;
     float: left;
-}
-.columns .small-font {
-    font-size: 70%;
 }
 .c_left {
     display: block;
@@ -1231,13 +1231,28 @@ div.references {
 div.references p {
     margin: 5px 0px;
 }
-/* alerts */
+/******************
+alerts
+*******************/
+
+
 div.alert {
+    clear: both;
+    display: block;
+    font-size: 70%;
     border-width: 1px;
     border-style: solid;
-    border-color: red;
+/*    border-color: red;*/
+    background-color: white;
     margin-left: 2em;
     border-left-width: 1em;
+    width: 60%;
+    float: right;
+}
+
+div.alert.red {
+    border-color: red;
+    color: black;
 }
 .green {
     color: green;
